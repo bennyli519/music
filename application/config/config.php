@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:81/music/style/admin/';
+$config['base_url'] = 'http://localhost:81/music/';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +77,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'chgrp';
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------
