@@ -8,20 +8,22 @@
     <meta name="renderer" content="webkit">
 
     <title>音乐推荐系统</title>
-    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <meta name="keywords" content="imusic后台管理系统，音乐推荐系统">
+    <meta name="description" content="imusic后台管理系统">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo base_url().'css/bootstrap.min.css' ?>" rel="stylesheet">
+    <link href="<?php echo base_url().'font-awesome/css/font-awesome.css' ?>" rel="stylesheet">
+
+
 
     <!-- Morris -->
-    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <link href="<?php echo base_url().'css/plugins/morris/morris-0.4.3.min.css'?>" rel="stylesheet">
 
     <!-- Gritter -->
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="<?php echo base_url().'js/plugins/gritter/jquery.gritter.css'?>" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url().'css/animate.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url().'css/style.css'?>"rel="stylesheet">
 
 </head>
 
@@ -34,7 +36,7 @@
                     <li class="nav-header">
 
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="<?php echo base_url().'img/profile_small.jpg'?>" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Beaut-zihan</strong>
@@ -63,7 +65,7 @@
                         <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">主页</span></a>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa fa-globe"></i> <span class="nav-label">歌曲管理</span><span class="fa arrow"></span></a>
+                        <a href="index.html#"><i class="fa fa-music"></i> <span class="nav-label">歌曲管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#">上传歌曲</a>
                             </li>
@@ -72,7 +74,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa fa-globe"></i> <span class="nav-label">歌单管理</span><span class="fa arrow"></span></a>
+                        <a href="index.html#"><i class="fa fa fa-list"></i> <span class="nav-label">歌单管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#">创建歌单</a>
                             </li>
@@ -90,7 +92,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa-flask"></i> <span class="nav-label">专辑管理</span><span class="fa arrow"></span></a>
+                        <a href="index.html#"><i class="fa fa-bookmark"></i> <span class="nav-label">专辑管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#">添加类型</a>
                             </li>
@@ -99,7 +101,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa-flask"></i> <span class="nav-label">电台管理</span><span class="fa arrow"></span></a>
+                        <a href="index.html#"><i class="fa fa-share-square-o"></i> <span class="nav-label">电台管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#">新建电台</a>
                             </li>
@@ -108,104 +110,37 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa fa-globe"></i> <span class="nav-label">v2.0新增</span><span class="fa arrow"></span></a>
+                        <a href="index.html#"><i class="fa fa-music"></i> <span class="nav-label">歌手管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="toastr_notifications.html">Toastr通知</a>
+                            <li><a href="contacts.html">添加歌手</a>
                             </li>
-                            <li><a href="code_editor.html">代码编辑器</a>
-                            </li>
-                            <li><a href="validation.html">表单验证</a>
-                            </li>
-                        </ul>
-                    </li>
-    
-                    <li>
-                        <a href="index.html#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="form_basic.html">基本表单</a>
-                            </li>
-                            <li><a href="form_validate.html">表单验证</a>
-                            </li>
-                            <li><a href="form_advanced.html">高级插件</a>
-                            </li>
-                            <li><a href="form_wizard.html">步骤条</a>
-                            </li>
-                            <li><a href="form_webuploader.html">百度WebUploader</a>
-                            </li>
-                            <li><a href="form_file_upload.html">文件上传</a>
-                            </li>
-                            <li><a href="form_editors.html">富文本编辑器</a>
-                            </li>
-                            <li><a href="form_simditor.html">simditor</a>
-                            </li>
-                            <li><a href="form_avatar.html">头像裁剪上传</a>
-                            </li>
-                            <li><a href="layerdate.html">日期选择器layerDate</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="index.html#"><i class="fa fa-desktop"></i> <span class="nav-label">xxx管理</span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="contacts.html">增加</a>
-                            </li>
-                
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="index.html#"><i class="fa fa-files-o"></i> <span class="nav-label">其他页面</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="search_results.html">搜索结果</a>
-                            </li>
-                            <li><a href="lockscreen.html">登录超时</a>
-                            </li>
-                            <li><a href="404.html">404页面</a>
-                            </li>
-                            <li><a href="500.html">500页面</a>
-                            </li>
-                            <li><a href="empty_page.html">空白页</a>
-                            </li>
+                            <li><a href="contacts.html">查看歌手</a>
+                            </li>              
                         </ul>
                     </li>
 
                     <li>
-                        <a href="index.html#"><i class="fa fa-flask"></i> <span class="nav-label">UI元素</span><span class="fa arrow"></span></a>
+                        <a href="index.html#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-
-                            <li><a href="icons.html">字体图标</a>
+                            <li><a href="contacts.html">添加管理员用户</a>
                             </li>
-                            <li><a href="iconfont.html">阿里巴巴矢量图标库</a>
-                            </li>
-                            <li><a href="buttons.html">按钮</a>
-                            </li>
-                            <li><a href="tabs_panels.html">选项卡 & 面板</a>
-                            </li>
+                            <li><a href="contacts.html">修改密码</a>
+                            </li>    
+                            <li><a href="contacts.html">查看前台用户</a>
+                            </li>           
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa-table"></i> <span class="nav-label">表格</span><span class="fa arrow"></span></a>
+                        <a href="index.html#"><i class="fa fa-recycle"></i> <span class="nav-label">音乐推荐管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="table_basic.html">基本表格</a>
+                            <li><a href="contacts.html">歌曲推荐</a>
                             </li>
-                            <li><a href="table_data_tables.html">数据表格(DataTables)</a>
-                            </li>
-                            <li><a href="table_jqgrid.html">jqGrid</a>
-                            </li>
+                            <li><a href="contacts.html">歌单推荐</a>
+                            </li>    
+                            <li><a href="contacts.html">电台推荐</a>
+                            </li>           
                         </ul>
                     </li>
-                    <li>
-                        <a href="index.html#"><i class="fa fa-picture-o"></i> <span class="nav-label">图库</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="carousel.html">图片切换</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="index.html#"><i class="fa fa-sitemap"></i> <span class="nav-label">菜单 </span><span class="fa arrow"></span></a>
-
-                    </li>
-
                 </ul>
 
             </div>
@@ -224,7 +159,7 @@
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <span class="m-r-sm text-muted welcome-message"><a href="index.html" title="返回首页"><i class="fa fa-home"></i></a>欢迎使用H+后台主题</span>
+                            <span class="m-r-sm text-muted welcome-message"><a href="index.html" title="返回首页"><i class="fa fa-home"></i></a>admin,你好!</span>
                         </li>
            
                         <li>
@@ -238,30 +173,29 @@
             </div>
             <div class="row  border-bottom white-bg dashboard-header">
                 <div class="col-sm-12">
-                    <blockquote class="text-warning" style="font-size:14px">您是否需要自己做一款后台、会员中心等等的，但是又缺乏html等前端知识…
-                        <br>您是否一直在苦苦寻找一款适合自己的后台主题…
-                        <br>您是否想做一款自己的web应用程序…
-                        <br>…………
-                        <h4 class="text-danger">那么，现在H+来了</h4>
+                    <blockquote class="text-warning" style="font-size:14px">
+                        <br>它倾倒你要经沮丧与兴奋
+                        <br>来自多少个极善感的心
+                        <br>谁把感想冥想出快慢与起伏
+                        <br>经历高低牵引催促它诞生
+                        <p></p>
+                        <h4 class="text-danger">——戴上耳机 你便拥有了全世界</h4>
                     </blockquote>
 
                     <hr>
                 </div>
                 <div class="col-sm-3">
-                    <h2>Hello,Guest</h2>
-                    <small>移动设备访问请扫描以下二维码：</small>
+                    <h2>Hello,Jerry!</h2>
+                    <small>iMusic访问请扫描以下二维码：</small>
                     <br>
                     <br>
-                    <img src="img/qr_code.png" width="100%" style="max-width:264px;">
+                    <img src="<?php echo base_url().'img/qr_code.png'?>" width="100%" style="max-width:153px;">
                     <br>
                 </div>
                 <div class="col-sm-5">
-                    <h2>
-                            素材火www.sucaihuo.com
-                        </h2>
-                    <p>H+是一个完全响应式，基于Bootstrap3.3.4最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术，她提供了诸多的强大的可以重新组合的UI组件，并集成了最新的jQuery版本(v2.1.1)，当然，也集成了很多功能强大，用途广泛的jQuery插件，她可以用于所有的Web应用程序，如<b>网站管理后台</b>，<b>网站会员中心</b>，<b>CMS</b>，<b>CRM</b>，<b>OA</b>等等，当然，您也可以对她进行深度定制，以做出更强系统。</p>
+                    <h2 class="mgb20"><strong>欢迎光临Music推荐管理系统后台</strong></h2>
                     <p>
-                        <b>当前版本：</b>v2.0
+                        <b>登录时间:</b><span>2017/12/17 14：00</span>
                     </p>
                     <p>
                         <b>定价：</b><span class="label label-warning">&yen;768（不开发票）</span>
@@ -277,18 +211,18 @@
                     </p>
                 </div>
                 <div class="col-sm-4">
-                    <h4>H+具有以下特点：</h4>
+                    <h4>iMusic基本功能：</h4>
                     <ol>
-                        <li>完全响应式布局（支持电脑、平板、手机等所有主流设备）</li>
-                        <li>基于最新版本的Bootstrap 3.3.4</li>
-                        <li>提供4套不同风格的皮肤</li>
-                        <li>支持多种布局方式</li>
-                        <li>使用最流行的的扁平化设计</li>
-                        <li>提供了诸多的UI组件</li>
-                        <li>集成多款国内优秀插件，诚意奉献</li>
-                        <li>提供盒型、全宽、响应式视图模式</li>
-                        <li>采用HTML5 & CSS3</li>
-                        <li>拥有良好的代码结构</li>
+                        <li>音乐分类(歌手类别分类,歌曲类型分类,时间年代分类);</li>
+                        <li>音乐搜索与下载;</li>
+                        <li>我的音乐坊;</li>
+                        <li>音乐赏析与评价;</li>
+                        <li>音乐电台;</li>
+                        <li>音乐热度统计(歌曲下载量,用户点评数);</li>
+                        <li class="text-danger">音乐关联推荐(协同过滤);</li>
+                        <li>音乐信息管理;</li>
+                        <li>音乐排行榜;</li>
+                        <li>音乐播放列表;</li>
                         <li>更多……</li>
                     </ol>
                 </div>
@@ -299,15 +233,14 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js?v=3.4.0"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo base_url().'js/jquery-2.1.1.min.js'?>"></script>
+    <script src="<?php echo base_url().'js/bootstrap.min.js'?>"></script>
+    <script src="<?php echo base_url().'js/plugins/metisMenu/jquery.metisMenu.js'?>"></script>
+    <script src="<?php echo base_url().'js/plugins/slimscroll/jquery.slimscroll.min.js'?>"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/hplus.js?v=2.2.0"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
+    <script src="<?php echo base_url().'js/hplus.js'?>"></script>
+    <script src="<?php echo base_url().'js/plugins/pace/pace.min.js'?>"></script>
 
 </body>
 

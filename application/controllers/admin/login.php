@@ -13,7 +13,6 @@ class Login extends CI_Controller {
      */
     public function index(){
         $this->load->helper('url');
-        echo base_url();
         $this->load->view('login.html');
     }
 }
