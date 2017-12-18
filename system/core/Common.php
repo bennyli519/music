@@ -871,7 +871,7 @@ function p($arr){
 function success($url, $msg){
 	header('Content-Type:text/html;charset=utf-8');
 	$url = site_url($url);
-	echo "<script type='text/javascript'>alert('$msg');location.href='$url'</script>";
+	echo "<script type='text/javascript'>alert('$msg');location.href='$url';</script>";
 	die;
 }
 function appear($url){

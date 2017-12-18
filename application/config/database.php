@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '119.29.229.163',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'imusic',

@@ -16,12 +16,15 @@ class Admin_model extends CI_Model{
 		$data = $this->db->get_where('users', array('user_name'=>$username,'user_type'=>'0'))->result_array();
 		return $data;
 	}
+	public function add($data){
+		$this->db->insert('users',$data);
+	}
 
 	/**
 	 * 修改密码
 	 */
 	public function reset($uid, $data){
-		$this->db->update('admin', $data, array('aid'=>$uid));
+		$this->db->update('users', $data, array('user_id'=>$uid));
 	}
 
 	
