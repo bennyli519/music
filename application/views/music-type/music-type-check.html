@@ -19,6 +19,16 @@
         body{
             background:transparent;
         }
+        #edit{
+        	border-color: transparent;
+        }
+        input.active{
+        	border:1px solid green !important;
+        }
+        input:hover{
+        	cursor: pointer;
+        	border:1px solid green !important;
+        }
     </style>
 
 </head>
@@ -45,11 +55,13 @@
                               <tbody>
                               	<?php foreach($type as $v): ?>
                                 <tr>
-                                    <th scope="row"><?php echo $v['type_id'] ?></th>
-                                    <td><?php echo $v['type_name'] ?></td>
+                                    <th class="tid" scope="row"><?php echo $v['type_id'] ?></th>
+                                    <!--<td><?php echo $v['type_name'] ?></td>-->
+                                    <td><input type="text" class="form-control" id="edit"  value='<?php echo $v['type_name']?>'/></td>
                                     <td>
-                                        <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a>
-                                        <a href="<?php echo site_url('admin/type/remove_type/' . $v['type_id']) ?>" id="remove" class="btn btn-danger">删除</a>
+                                      <!--  <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a>-->
+                                        <a href="<?php echo site_url('admin/type/del_type/' . $v['type_id']) ?>" id="remove" class="btn btn-danger mgr15">删除</a>
+                                     
                                     </td>
                                 </tr>
                          		<?php endforeach ?>
@@ -77,14 +89,23 @@
     <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
     <script>
         $(document).ready(function () {
+        	console.log("aa");
+        	console.log("<?php echo site_url('admin/type/edit_type')?>");
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
-            $("tbody tr td #edit").one("click",function(){
-                var currentText = $(this).parent().prev().text();
-                $(this).parent().prev().replaceWith("<td><input type='text' value='"+ currentText +"' class='form-control'></td>");
-                $("input").focus();
+			$("input").focus(function(){
+				$(this).addClass('active');
+			})
+			$("input").blur(function(){
+	
+				$(this).removeClass('active');
+			})
+            $("input").change(function(){
+           		var type_name = $(this).val();
+				$.get("<?php echo site_url('admin/type/edit_type')?>",{id : $(".tid").html(),type:type_name});
+
             })
             $("tbody tr td #remove").one("click",function(){
                 var msg = "您真的确定要删除吗？"; 

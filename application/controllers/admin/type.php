@@ -45,7 +45,20 @@ class Type extends CI_Controller {
 	 * 修改动作
 	 */
 	public function edit_type(){
-		$tid = $this->uri->segment(4);
-		//echo $tid;die;
+		$tid = $_GET['id'];//ajax 获取当前id
+		$data = array(
+			'type_name' => $_GET['type']
+		);
+		$this->type->edit($tid,$data);
 	}
+	
+	/**
+	 * 删除动作
+	 */
+	public function del_type(){
+		$tid = $this->uri->segment(4);
+		$this->type->del($tid);
+		success('admin/type/show_all','删除成功');
+	}
+	
 }

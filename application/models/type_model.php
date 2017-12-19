@@ -26,9 +26,15 @@ class Type_model extends CI_Model{
 	/**
 	 * 编辑
 	 */
-	public function reset($uid, $data){
-		$this->db->update('type', $data, array('user_id'=>$uid));
+	public function edit($uid, $data){
+		$this->db->update('type', $data, array('type_id'=>$uid));
 	}
-
+	/**
+	 * 删除
+	 */
+	public function del($tid){
+		$data = $this->db->delete('type',array('type_id'=>$tid));
+		return $data;
+	}
 	
 }
