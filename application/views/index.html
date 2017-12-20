@@ -128,9 +128,9 @@
                     <li>
                         <a href="index.html#"><i class="fa fa-music"></i> <span class="nav-label">歌手管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="contacts.html">添加歌手</a>
+                            <li><a href="<?php echo site_url('admin/singer/singer_view')?>">添加歌手</a>
                             </li>
-                            <li><a href="contacts.html">查看歌手</a>
+                            <li><a href="<?php echo site_url('admin/singer/singer_list_view')?>">查看歌手</a>
                             </li>
                         </ul>
                     </li>
@@ -179,7 +179,7 @@
                         </li>
 
                         <li>
-                            <a href="<?php echo site_url('admin/login/login_out') ?>">
+                            <a href="<?php echo site_url('admin/login/login_out') ?>" target="_self">
                                 <i class="fa fa-sign-out"></i> 退出
                             </a>
                         </li>
