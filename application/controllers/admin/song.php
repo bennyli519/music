@@ -4,7 +4,7 @@
  * @Author: jerryLi 
  * @Date: 2017-12-23 12:53:08 
  * @Last Modified by: jerryLi
- * @Last Modified time: 2017-12-23 23:37:23
+ * @Last Modified time: 2017-12-24 00:21:47
  */
 
 class Song extends CI_Controller {
@@ -16,10 +16,11 @@ class Song extends CI_Controller {
 		$this->load->helper('form');
         $this->load->model('type_model','type');//加载音乐类型模型
         $this->load->model('singer_model','singer');//加载歌手音乐模型
+        $this->load->model('song_model','song');
     }
 
     /**
-     * 查看歌手视图加载
+     * 查看歌曲视图加载
      */
     public function song_view(){
         $data['type'] = $this->type->check(); //调取音乐类型
@@ -27,13 +28,12 @@ class Song extends CI_Controller {
         $this->load->view("music-song/music-song-upload.html",$data);
     }
 	/**
-	 * 查看歌手视图加载
+	 * 查看歌曲视图加载
 	 */
 	
 	public function song_list_view(){
-        $this->load->view('music-song/music-song-check.html');
-		// $data['singer'] = $this->singer->check();
-		// $this->load->view("music-singer/music-singer-check.html",$data);
+        $data['song'] = $this->song->check();
+		$this->load->view("music-song/music-song-check.html",$data);
 	}
 	
     /**
@@ -65,7 +65,6 @@ class Song extends CI_Controller {
                 }
             
         }
-		
         $song_name = $this->input->post('song_name');
         $song_type = $this->input->post('type_id');
         $singer_id = $this->input->post('singer_id');
@@ -75,15 +74,14 @@ class Song extends CI_Controller {
         
         $data = array(
 			'song_name'   => $song_name,
-            'song_date'   => $song_date,
+            'song_publish'   => $song_date,
             'song_source' => $song_source['file_name'],
 			'song_lyics'  => $song_lyics['file_name'],
 			'type_id'     => $song_type,
 			'singer_id'   => $singer_id
 		);
-		p($data);die;
-		// $this->singer->add($data);
-		// success('admin/singer/singer_list_view','添加成功');
+		$this->song->add($data);
+		success('admin/singer/singer_list_view','添加成功');
 
     }
     

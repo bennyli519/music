@@ -4,7 +4,7 @@
  * @Author: jerryLi 
  * @Date: 2017-12-23 16:53:01 
  * @Last Modified by: jerryLi
- * @Last Modified time: 2017-12-23 17:32:52
+ * @Last Modified time: 2017-12-24 00:16:42
  * 歌曲模型
  */
 
@@ -12,8 +12,13 @@ class Song_model extends CI_Model{
 	/**
 	 * 查询
 	 */
+	
 	public function check(){
-		$data = $this->db->get('songs')->result_array();
+		$data = $this->db->select('song_id,song_name,singer_name,type_name')->from('songs')
+		->join('singers', 'songs.singer_id=singers.singer_id')
+		->join('type','songs.type_id=type.type_id')
+		->order_by('song_id', 'asc')->get()->result_array();
+
 		return $data;
 	}
 	/**

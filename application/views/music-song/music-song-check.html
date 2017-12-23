@@ -58,33 +58,17 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                        <?php foreach($song as $v): ?>
                                         <tr>
-                                            <th scope="row">1</th>                               
-                                            <td>十年</td>
-                                            <td>陈奕迅</td>
-                                            <td>流行</td>
+                                            <th scope="row"><?php echo $v['song_id']?></th>                               
+                                            <td><?php echo $v['song_name']?></td>
+                                            <td><?php echo $v['singer_name']?></td>
+                                            <td><?php echo $v['type_name']?></td>
                                             <td>
                                                 <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a><a href="#" id="addList" class="btn btn-primary mgr15">添加到歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a> 
                                             </td>
                                         </tr>
-                                        <tr></tr>
-                                            <th scope="row">2</th>
-                                            <td>红玫瑰</td>
-                                            <td>陈奕迅</td>
-                                            <td>流行</td>
-                                            <td>
-                                                <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a><a href="#" id="addList" class="btn btn-primary mgr15">添加到歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>单车</td>
-                                            <td>陈奕迅</td>
-                                            <td>流行</td>
-                                            <td>
-                                                <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a><a href="#" id="addList" class="btn btn-primary mgr15">添加到歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a>
-                                            </td>
-                                        </tr>
+                                        <?php endforeach ?>
                                       </tbody>
                                     </table>
                                   </div>
