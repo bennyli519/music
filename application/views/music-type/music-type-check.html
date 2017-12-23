@@ -104,7 +104,8 @@
 			})
             $("input").change(function(){
            		var type_name = $(this).val();
-				$.get("<?php echo site_url('admin/type/edit_type')?>",{id : $(".tid").html(),type:type_name});
+				var tid = $(this).parent().parent().find('.cid').html();
+				$.get("<?php echo site_url('admin/type/edit_type')?>",{id : tid,type:type_name});
 
             })
             $("tbody tr td #remove").one("click",function(){

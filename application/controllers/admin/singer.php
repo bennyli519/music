@@ -27,7 +27,8 @@ class Singer extends CI_Controller {
 	 */
 	
 	public function singer_list_view(){
-		$this->load->view("music-singer/music-singer-check.html");
+		$data['singer'] = $this->singer->check();
+		$this->load->view("music-singer/music-singer-check.html",$data);
 	}
 	
     /**
@@ -94,23 +95,25 @@ class Singer extends CI_Controller {
     }
     
 	/**
-	 * 修改动作
+	 * 歌手信息修改动作
 	 */
-	public function edit_type(){
-		$tid = $_GET['id'];//ajax 获取当前id
+	public function edit_singer(){
+		$sid = $_GET['id'];//ajax 获取当前id
+		$intro = $_GET['intro'];
+		
 		$data = array(
-			'type_name' => $_GET['type']
+			'singer_intro' => $intro
 		);
-		$this->type->edit($tid,$data);
+		$this->singer->edit($sid,$data);
 	}
 	
 	/**
 	 * 删除动作
 	 */
-	public function del_type(){
-		$tid = $this->uri->segment(4);
-		$this->type->del($tid);
-		success('admin/type/show_all','删除成功');
+	public function del_singer(){
+		$sid = $this->uri->segment(4);
+		$this->singer->del($sid);
+		success('admin/singer/singer_list_view','删除成功');
 	}
 	
 }

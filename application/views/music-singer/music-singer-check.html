@@ -18,6 +18,19 @@
         body{
             background:transparent;
         }
+       	.mgl10{
+       		margin-left: 10px;
+       	}
+       	   #edit{
+        	border-color: transparent;
+        }
+        textarea.active{
+        	border:1px solid green !important;
+        }
+        textarea:hover{
+        	cursor: pointer;
+        	border:1px solid green !important;
+        }
     </style>
 
 </head>
@@ -44,33 +57,30 @@
                                 </tr>
                               </thead>
                               <tbody>
+                              	<?php foreach($singer as $v): ?>
                                 <tr>
-                                    <th scope="row">1</th>                               
-                                    <td>陈奕迅</td>
-                                    <td>男歌手</td>
-                                    <td>港台流行明星xxxxxxxxxxxxxxxxxxx</td>
+                                    <th class="cid" scope="row"><?php echo $v['singer_id']?></th>                               
                                     <td>
-                                        <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a><a href="#" id="remove" class="btn btn-danger">删除</a>
+                                    	<img src="<?php echo base_url().'uploads/singers/'.$v['singer_avtar']?>" class="img-circle" width="50"height="50"/>
+                                    	<strong class="mgl10"><?php echo $v['singer_name'] ?></strong></td>
+                                    <td>
+                                    	<?php 
+                                    		if($v['singer_type'] =="1"){
+                                    			echo '男歌手';
+                                    		}else if($v['singer_type'] =="2"){
+                                    			echo '女歌手';
+                                    		}else{	
+                                    			echo '组合';
+                                    		}                                   		
+                                    	?>
+                                    	
+                                    </td>
+                                    <td><textarea class="form-control" id="edit" rows="3"><?php echo $v['singer_intro'] ?></textarea></td>
+                                    <td>
+                                        <a href="<?php echo site_url('admin/singer/del_singer/' . $v['singer_id']) ?>" id="remove" class="btn btn-danger">删除</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>                               
-                                    <td>梁静茹</td>
-                                    <td>女歌手</td>
-                                    <td>港台流行明星xxxxxxxxxxxxxxxxxxx</td>
-                                    <td>
-                                        <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a><a href="#" id="remove" class="btn btn-danger">删除</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>                               
-                                    <td>WestLife</td>
-                                    <td>组合</td>
-                                    <td>欧美流行组合xxxxxxxxxxxxxxxxxxx</td>
-                                    <td>
-                                        <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a><a href="#" id="remove" class="btn btn-danger">删除</a>
-                                    </td>
-                                </tr>
+                                <?php endforeach ?>
                               </tbody>
                             </table>
                           </div>
@@ -92,12 +102,35 @@
 
      <!-- iCheck -->
      <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
-    <script>
-        $(document).ready(function () {
+      <script>
+        $(document).ready(function () {      
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
+			$("textarea").focus(function(){
+				$(this).addClass('active');
+			})
+			$("textarea").blur(function(){
+	
+				$(this).removeClass('active');
+			})
+            $("textarea").change(function(){
+           		var singer_intro = $(this).val();
+           		var sid = $(this).parent().parent().find('.cid').html();
+				$.get("<?php echo site_url('admin/singer/edit_singer')?>",{id : sid,intro:singer_intro});
+
+            })
+            $("tbody tr td #remove").one("click",function(){
+                var msg = "您真的确定要删除吗？"; 
+                if (confirm(msg)==true){ 
+                    $(this).parent().parent().remove();
+                }else{ 
+                    return false; 
+                } 
+                var currentText = $(this).parent().prev().text();
+               
+            })
         });
     </script>
 

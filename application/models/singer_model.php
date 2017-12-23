@@ -12,7 +12,7 @@ class Singer_model extends CI_Model{
 	 * 查询
 	 */
 	public function check(){
-		$data = $this->db->get('type')->result_array();
+		$data = $this->db->get('singers')->result_array();
 		return $data;
 	}
 	/**
@@ -26,14 +26,14 @@ class Singer_model extends CI_Model{
 	/**
 	 * 编辑
 	 */
-	public function edit($uid, $data){
-		$this->db->update('type', $data, array('type_id'=>$uid));
+	public function edit($sid, $data){
+		$this->db->update('singers', $data, array('singer_id'=>$sid));
 	}
 	/**
 	 * 删除
 	 */
-	public function del($tid){
-		$data = $this->db->delete('type',array('type_id'=>$tid));
+	public function del($sid){
+		$data = $this->db->delete('singers',array('singer_id'=>$sid));
 		return $data;
 	}
 	
