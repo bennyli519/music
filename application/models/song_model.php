@@ -4,7 +4,7 @@
  * @Author: jerryLi 
  * @Date: 2017-12-23 16:53:01 
  * @Last Modified by: jerryLi
- * @Last Modified time: 2017-12-24 00:16:42
+ * @Last Modified time: 2017-12-24 00:25:52
  * 歌曲模型
  */
 
@@ -18,7 +18,6 @@ class Song_model extends CI_Model{
 		->join('singers', 'songs.singer_id=singers.singer_id')
 		->join('type','songs.type_id=type.type_id')
 		->order_by('song_id', 'asc')->get()->result_array();
-
 		return $data;
 	}
 	/**

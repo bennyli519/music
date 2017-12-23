@@ -4,7 +4,7 @@
  * @Author: jerryLi 
  * @Date: 2017-12-23 12:53:08 
  * @Last Modified by: jerryLi
- * @Last Modified time: 2017-12-24 00:21:47
+ * @Last Modified time: 2017-12-24 00:29:46
  */
 
 class Song extends CI_Controller {
@@ -88,7 +88,7 @@ class Song extends CI_Controller {
 	/**
 	 * 歌曲信息修改动作
 	 */
-	public function edit_singer(){
+	public function edit_song(){
 		$sid = $_GET['id'];//ajax 获取当前id
 		$intro = $_GET['intro'];
 		
@@ -101,10 +101,10 @@ class Song extends CI_Controller {
 	/**
 	 * 删除动作
 	 */
-	public function del_singer(){
+	public function del_song(){
 		$sid = $this->uri->segment(4);
-		$this->singer->del($sid);
-		success('admin/singer/singer_list_view','删除成功');
+		$this->song->del($sid);
+		success('admin/song/song_list_view','删除成功');
 	}
 	
 }

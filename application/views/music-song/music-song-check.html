@@ -65,7 +65,7 @@
                                             <td><?php echo $v['singer_name']?></td>
                                             <td><?php echo $v['type_name']?></td>
                                             <td>
-                                                <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a><a href="#" id="addList" class="btn btn-primary mgr15">添加到歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a> 
+                                            <a href="<?php echo site_url('admin/song/del_song/' . $v['song_id']) ?>" id="remove" class="btn btn-danger">删除</a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
