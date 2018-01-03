@@ -116,4 +116,39 @@ class Singer extends CI_Controller {
 		success('admin/singer/singer_list_view','删除成功');
 	}
 	
+	public function getSingerMes(){
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+		header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE');
+     	$singer = $_POST['singer'];
+
+     	echo($singer[0]['items'][0][1]);
+     	for( $i=0; $i < sizeof($singer); $i++){
+     		    		
+     		for( $j=0;$j< sizeof($singer[$i]['items']);$j++){
+     			
+     			$singer_name = $singer[$i]['items'][$j][1];
+     			$image = $singer[$i]['items'][$j][2];
+     			
+				$data = array(
+			     		'singer_name' => $singer_name,
+			     		'singer_type' => 1,
+						'singer_avtar'=> $image,
+						'singer_area' => 2,
+						'singer_birth'=> "1980-02-12",
+						'singer_intro'=> "大家好我是".$singer_name  	
+				);
+				p($data);
+				$this->singer->add($data);
+
+     		}
+     	}
+     
+//	    $data = json_encode($singer);
+//   	p($data);
+//   	echo $data[0].title;
+//   	p($singer);die;
+        
+	}
+	
 }
