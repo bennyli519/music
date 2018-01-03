@@ -27,6 +27,45 @@ class Singer extends CI_Controller {
 	 */
 	
 	public function singer_list_view(){
+		//后台设置后缀为空，否则分页出错
+		$this->config->set_item('url_suffix', '');
+		//载入分页类
+		$this->load->library('pagination');
+		$perPage = 5;
+
+		//配置项设置
+		$config['base_url'] = site_url('admin/singer/singer_list_view');
+		$config['total_rows'] = $this->db->count_all_results('singers');
+		$config['per_page'] = $perPage;
+		$config['uri_segment'] = 4;
+		
+		$config['full_tag_open'] = '<ul class="pagination">';  
+        $config['full_tag_close'] = '</ul>';  
+        $config['first_tag_open'] = '<li>';  
+        $config['first_tag_close'] = '</li>';  
+        $config['prev_tag_open'] = '<li>';  
+        $config['prev_tag_close'] = '</li>';  
+        $config['next_tag_open'] = '<li>';  
+        $config['next_tag_close'] = '</li>';  
+        $config['cur_tag_open'] = '<li class="active"><a>';  
+        $config['cur_tag_close'] = '</a></li>';  
+        $config['last_tag_open'] = '<li>';  
+        $config['last_tag_close'] = '</li>';  
+        $config['num_tag_open'] = '<li>';  
+        $config['num_tag_close'] = '</li>';  
+
+		$config['first_link']= '首页';  
+        $config['next_link']= '>';  
+        $config['prev_link']= '<';  
+        $config['last_link']= '末页'; 
+        
+		$this->pagination->initialize($config);
+
+		$data['links'] = $this->pagination->create_links();
+		// p($data);die;
+		$offset = $this->uri->segment(4);
+		$this->db->limit($perPage, $offset);
+		
 		$data['singer'] = $this->singer->check();
 		$this->load->view("music-singer/music-singer-check.html",$data);
 	}
