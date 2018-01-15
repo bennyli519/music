@@ -106,5 +106,58 @@ class Song extends CI_Controller {
 		$this->song->del($sid);
 		success('admin/song/song_list_view','删除成功');
 	}
-	
+	public function readSong(){
+		set_time_limit(0);
+		$path = base_url()."songs.txt";		
+		$file = fopen($path, "r");
+		$songsList = array();
+		$i = 0;
+		while(!feof($file))
+		{
+		 $songsList[$i]= fgets($file);//fgets()函数从文件指针中读取一行
+		 $i++;
+		}
+		fclose($file);
+		$songsList=array_filter($songsList);
+//		print_r($songsList);
+		for($i=0;$i< sizeof($songsList);$i++){
+			$mid = substr($songsList[$i],36,14);
+			echo $mid.'<br>';
+			$data = array(
+				'song_source'  => $songsList[$i],
+			);
+//			$this->song->edit($mid,$data);
+		}	
+		
+	}
+	public function getSongsMes(){
+		header('Access-Control-Allow-Origin: *');
+		header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+		header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE');
+     	$songs = $_POST['songs'];
+     	for( $i=0; $i < sizeof($songs); $i++){
+
+     			$song_mid = $songs[$i][1];
+     			$song_name = $songs[$i][3];
+				$song_duration = $songs[$i][6];
+     			$song_listencount = $songs[$i][9];
+     			$song_uploadtime = $songs[$i][8];
+     			$singer_mid = $songs[$i][2];
+     			$ablum_mid = $songs[$i][5];
+     			$ablum_name = $songs[$i][4];
+     			$type_id = rand(1,10);
+				$data = array(
+						'song_mid'  => $song_mid,
+			     		'song_name' => $song_name,
+			     		'song_duration' => $song_duration,
+			     		'song_listencount' => $song_listencount,
+						'song_publish'=> $song_uploadtime,
+						'singer_mid' => $singer_mid,
+						'album_mid' => $ablum_mid,
+						'type_id' => $type_id
+				);
+     	}
+
+	}
 }
+ 
