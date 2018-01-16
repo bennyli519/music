@@ -17,6 +17,7 @@ class Song extends CI_Controller {
         $this->load->model('type_model','type');//加载音乐类型模型
         $this->load->model('singer_model','singer');//加载歌手音乐模型
         $this->load->model('song_model','song');
+        $this->load->model('album_model','album');
     }
 
     /**
@@ -146,18 +147,28 @@ class Song extends CI_Controller {
      			$ablum_mid = $songs[$i][5];
      			$ablum_name = $songs[$i][4];
      			$type_id = rand(1,10);
+//				$data = array(
+//						'song_mid'  => $song_mid,
+//			     		'song_name' => $song_name,
+//			     		'song_duration' => $song_duration,
+//			     		'song_listencount' => $song_listencount,
+//						'song_publish'=> $song_uploadtime,
+//						'singer_mid' => $singer_mid,
+//						'album_mid' => $ablum_mid,
+//						'type_id' => $type_id
+//				);
 				$data = array(
-						'song_mid'  => $song_mid,
-			     		'song_name' => $song_name,
-			     		'song_duration' => $song_duration,
-			     		'song_listencount' => $song_listencount,
-						'song_publish'=> $song_uploadtime,
-						'singer_mid' => $singer_mid,
-						'album_mid' => $ablum_mid,
-						'type_id' => $type_id
+						'album_name' => $ablum_name,
+						'album_mid' => $ablum_mid
 				);
+//				$this->album->add($data);
+//				$result = $this->album->check();
+//				if(empty($result[$i]['album_mid']))
+//				p($data);
+			
      	}
 
 	}
+	
 }
  
