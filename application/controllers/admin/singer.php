@@ -187,12 +187,8 @@ class Singer extends CI_Controller {
 
      		}
      	}
-     
-//	    $data = json_encode($singer);
-//   	p($data);
-//   	echo $data[0].title;
-//   	p($singer);die;
-        
+         
 	}
+	
 	
 }
