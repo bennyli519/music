@@ -12,6 +12,7 @@ class Singer_model extends CI_Model{
 	 * 查询
 	 */
 	public function check(){
+		$this->db->select('singer_name, singer_mid, singer_avtar,singer_findex');
 		$data = $this->db->get('singers')->result_array();
 		return $data;
 	}

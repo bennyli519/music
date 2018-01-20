@@ -160,34 +160,35 @@ class Singer extends CI_Controller {
 		header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 		header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE');
      	$singer = $_POST['singer'];
-
      	echo($singer[0]['items'][0][1]);
      	for( $i=0; $i < sizeof($singer); $i++){
      		    		
      		for( $j=0;$j< sizeof($singer[$i]['items']);$j++){
-     			
+     			$singer_mid = $singer[$i]['items'][$j][0];
      			$singer_name = $singer[$i]['items'][$j][1];
-     			$image = $singer[$i]['items'][$j][2];
+     			$singer_findex = $singer[$i]['items'][$j][2];
+     			$singer_type =  $singer[$i]['items'][$j][3];
+     			$singer_area = $singer[$i]['items'][$j][4];
+//   			$singer_gender = $singer[$i]['items'][$j][5];
+     			$image = $singer[$i]['items'][$j][6];
      			
 				$data = array(
+						'singer_mid'  => $singer_mid,
 			     		'singer_name' => $singer_name,
-			     		'singer_type' => 1,
+			     		'singer_findex' => $singer_findex,
+			     		'singer_type' => $singer_type,
 						'singer_avtar'=> $image,
-						'singer_area' => 2,
+						'singer_area' => $singer_area,
 						'singer_birth'=> "1980-02-12",
 						'singer_intro'=> "大家好我是".$singer_name  	
 				);
 				p($data);
-				$this->singer->add($data);
+//				$this->singer->add($data);
 
      		}
      	}
-     
-//	    $data = json_encode($singer);
-//   	p($data);
-//   	echo $data[0].title;
-//   	p($singer);die;
-        
+         
 	}
+	
 	
 }

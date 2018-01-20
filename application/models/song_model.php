@@ -32,7 +32,7 @@ class Song_model extends CI_Model{
 	 * 编辑
 	 */
 	public function edit($sid, $data){
-		$this->db->update('songs', $data, array('song_id'=>$sid));
+		$this->db->update('songs', $data, array('song_mid'=>$sid));
 	}
 	/**
 	 * 删除
