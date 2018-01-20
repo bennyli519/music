@@ -90,16 +90,16 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa fa-list"></i> <span class="nav-label">歌单管理</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-music"></i> <span class="nav-label">歌手管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="#">创建歌单</a>
+                            <li><a href="<?php echo site_url('admin/singer/singer_view')?>">添加歌手</a>
                             </li>
-                            <li><a href="#">歌单列表</a>
+                            <li><a href="<?php echo site_url('admin/singer/singer_list_view')?>">查看歌手</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa-music"></i> <span class="nav-label">音乐类型管理</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-music"></i> <span class="nav-label">音乐类型管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<?php echo site_url('admin/type/show_type')?>">添加类型</a>
                             </li>
@@ -108,7 +108,16 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa-bookmark"></i> <span class="nav-label">专辑管理</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa fa-list"></i> <span class="nav-label">歌单管理</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="#">创建歌单</a>
+                            </li>
+                            <li><a href="#">歌单列表</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bookmark"></i> <span class="nav-label">专辑管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<?php echo site_url('admin/type/show_type')?>">添加专辑</a>
                             </li>
@@ -117,7 +126,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="index.html#"><i class="fa fa-share-square-o"></i> <span class="nav-label">电台管理</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-share-square-o"></i> <span class="nav-label">电台管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#">新建电台</a>
                             </li>
@@ -125,15 +134,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="index.html#"><i class="fa fa-music"></i> <span class="nav-label">歌手管理</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="<?php echo site_url('admin/singer/singer_view')?>">添加歌手</a>
-                            </li>
-                            <li><a href="<?php echo site_url('admin/singer/singer_list_view')?>">查看歌手</a>
-                            </li>
-                        </ul>
-                    </li>
+   
 
                     <li>
                         <a href="index.html#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
