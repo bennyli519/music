@@ -30,10 +30,18 @@ class Api_model extends CI_Model{
 		return $data;
 	}
 	/**
-	 * 热度 (按收听量排行)
+	 * 0 港台 热度 (按收听量排行)
 	 */
-	public function hotSongs(){
+	public function hotHkSongs(){
+		$query = $this->db->get_where('songs', array('id' => $id), $limit, $offset);
+		$this->db->select('song_mid,song_name,songs.album_mid,singers.singer_name,singer_type')
+		->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->order_by('song_listencount','asc')
+		->get()->result_array();
 		
+		$singers = $this->db->get_where('singers',array('singer_type') => '0');
+		$this->db->get_where('songs',array('singer_mid') => '0');
 	}
 	
 }

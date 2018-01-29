@@ -21,22 +21,64 @@ class Song extends CI_Controller {
     }
 
     /**
-     * 查看歌曲视图加载
+     * 上传歌曲视图加载
      */
     public function song_view(){
         $data['type'] = $this->type->check(); //调取音乐类型
         $data['singer'] = $this->singer->check();//调取歌手
         $this->load->view("music-song/music-song-upload.html",$data);
     }
+	
+		
 	/**
-	 * 查看歌曲视图加载
+	 * 查看歌手视图加载（分页）
 	 */
 	
 	public function song_list_view(){
-        $data['song'] = $this->song->check();
+		//后台设置后缀为空，否则分页出错
+		$this->config->set_item('url_suffix', '');
+		//载入分页类
+		$this->load->library('pagination');
+		$perPage = 10;
+
+		//配置项设置
+		$config['base_url'] = site_url('admin/song/song_list_view');
+		$config['total_rows'] = $this->db->count_all_results('songs');
+		$config['per_page'] = $perPage;
+		$config['uri_segment'] = 4;
+		
+		$config['full_tag_open'] = '<ul class="pagination">';  
+        $config['full_tag_close'] = '</ul>';  
+        $config['first_tag_open'] = '<li>';  
+        $config['first_tag_close'] = '</li>';  
+        $config['prev_tag_open'] = '<li>';  
+        $config['prev_tag_close'] = '</li>';  
+        $config['next_tag_open'] = '<li>';  
+        $config['next_tag_close'] = '</li>';  
+        $config['cur_tag_open'] = '<li class="active"><a>';  
+        $config['cur_tag_close'] = '</a></li>';  
+        $config['last_tag_open'] = '<li>';  
+        $config['last_tag_close'] = '</li>';  
+        $config['num_tag_open'] = '<li>';  
+        $config['num_tag_close'] = '</li>';  
+
+		$config['first_link']= '首页';  
+        $config['next_link']= '>';  
+        $config['prev_link']= '<';  
+        $config['last_link']= '末页'; 
+        
+		$this->pagination->initialize($config);
+
+		$data['links'] = $this->pagination->create_links();
+		// p($data);die;
+		$offset = $this->uri->segment(4);
+		$this->db->limit($perPage, $offset);
+		
+		$data['song'] = $this->song->check();
 		$this->load->view("music-song/music-song-check.html",$data);
 	}
 	
+
     /**
      * 添加歌曲信息动作
      */
@@ -107,6 +149,7 @@ class Song extends CI_Controller {
 		$this->song->del($sid);
 		success('admin/song/song_list_view','删除成功');
 	}
+
 	public function readSong(){
 		set_time_limit(0);
 		$path = base_url()."songs.txt";		
@@ -120,14 +163,12 @@ class Song extends CI_Controller {
 		}
 		fclose($file);
 		$songsList=array_filter($songsList);
-//		print_r($songsList);
 		for($i=0;$i< sizeof($songsList);$i++){
 			$mid = substr($songsList[$i],36,14);
 			echo $mid.'<br>';
 			$data = array(
 				'song_source'  => $songsList[$i],
 			);
-//			$this->song->edit($mid,$data);
 		}	
 		
 	}
@@ -161,10 +202,7 @@ class Song extends CI_Controller {
 						'album_name' => $ablum_name,
 						'album_mid' => $ablum_mid
 				);
-//				$this->album->add($data);
-//				$result = $this->album->check();
-//				if(empty($result[$i]['album_mid']))
-//				p($data);
+
 			
      	}
 

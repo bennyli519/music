@@ -17,13 +17,13 @@ class Singer extends CI_Controller {
     }
 
     /**
-     * 查看歌手视图加载
+     * 上传歌手视图加载
      */
     public function singer_view(){
         $this->load->view("music-singer/music-singer-upload.html");
     }
 	/**
-	 * 查看歌手视图加载
+	 * 查看歌手视图加载（分页）
 	 */
 	
 	public function singer_list_view(){
