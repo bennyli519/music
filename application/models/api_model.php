@@ -33,15 +33,24 @@ class Api_model extends CI_Model{
 	 * 0 港台 热度 (按收听量排行)
 	 */
 	public function hotHkSongs(){
-		$query = $this->db->get_where('songs', array('id' => $id), $limit, $offset);
-		$this->db->select('song_mid,song_name,songs.album_mid,singers.singer_name,singer_type')
+//		$query = $this->db->get_where('songs', array('id' => $id), $limit, $offset);
+//		$this->db->select('song_mid,song_name,songs.album_mid,singers.singer_name,singer_type')
+//		->from('songs')
+//		->join('singers', 'songs.singer_mid=singers.singer_mid')
+//		->order_by('song_listencount','asc')
+//		->get()->result_array();
+////		
+//		$singers = $this->db->get_where('singers',array('singer_area' => '0'),10)->result_array();
+//		return $singers;
+		$this->db->where('singer_area', '0');
+		$this->db->limit(30);
+		$singers = $this->db->select('song_listencount,song_mid,song_name,singers.singer_name,singer_area')
 		->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
-		->order_by('song_listencount','asc')
+		->order_by('song_listencount','desc')
 		->get()->result_array();
+		return $singers;
 		
-		$singers = $this->db->get_where('singers',array('singer_type') => '0');
-		$this->db->get_where('songs',array('singer_mid') => '0');
 	}
-	
+
 }

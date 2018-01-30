@@ -42,4 +42,10 @@ class Api extends CI_Controller {
 		$a = json_encode($songList);
 		p($a);
 	}
+	
+	public function hotSong(){
+		$data = $this->api->hotHkSongs();
+		$s= json_encode($data);
+		p($s);
+	}
 }  
