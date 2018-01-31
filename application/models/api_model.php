@@ -32,7 +32,7 @@ class Api_model extends CI_Model{
 	/**
 	 * 0 港台 热度 (按收听量排行)
 	 */
-	public function hotHkSongs(){
+	public function hotSongs($areaIndex){
 //		$query = $this->db->get_where('songs', array('id' => $id), $limit, $offset);
 //		$this->db->select('song_mid,song_name,songs.album_mid,singers.singer_name,singer_type')
 //		->from('songs')
@@ -42,11 +42,12 @@ class Api_model extends CI_Model{
 ////		
 //		$singers = $this->db->get_where('singers',array('singer_area' => '0'),10)->result_array();
 //		return $singers;
-		$this->db->where('singer_area', '0');
+		$this->db->where('singer_area',$areaIndex);
 		$this->db->limit(30);
-		$singers = $this->db->select('song_listencount,song_mid,song_name,singers.singer_name,singer_area')
+		$singers = $this->db->select('song_listencount,song_mid,song_name,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
 		->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->join('albums','songs.album_mid=albums.album_mid')
 		->order_by('song_listencount','desc')
 		->get()->result_array();
 		return $singers;

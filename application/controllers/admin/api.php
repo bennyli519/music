@@ -43,9 +43,25 @@ class Api extends CI_Controller {
 		p($a);
 	}
 	
-	public function hotSong(){
-		$data = $this->api->hotHkSongs();
-		$s= json_encode($data);
-		p($s);
+	/**
+	 * 排行榜 前三十(singer_area:0港台 1内地 2日韩 3欧美)
+	 */
+	public function getHotSong(){
+		$area_hk = 0;
+		$area_dl = 1;
+		$area_jk = 2;
+		$area_ea = 3;
+
+		$data['area_hk'] = $this->api->hotSongs($area_hk);
+		
+		$data['area_dl'] = $this->api->hotSongs($area_dl);
+		
+		$data['area_jk'] = $this->api->hotSongs($area_jk);
+		
+		$data['area_ea'] = $this->api->hotSongs($area_ea);
+
+		p($data);
+		// $s= json_encode($data);
+		// p($s);
 	}
 }  
