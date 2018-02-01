@@ -37,31 +37,60 @@ class Api extends CI_Controller {
 		header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 		header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE');
 		$mid = $_POST['mid'];
-//		$mid = "0020PeOh4ZaCw1";
+		//$mid = "0020PeOh4ZaCw1";
 		$songList = $this->api->checkSongs($mid);
 		$a = json_encode($songList);
 		p($a);
 	}
+	/**
+	 * 排行榜页
+	 */
+	public function getTopList(){
+		$data = $this->api->TopList();
+		for($i=0;$i<5;$i++){
+			$a= $data[$i]['rank_songList'];
+			$arr = explode("/",$a);		//切割mid
+			foreach($arr as $key => $item){
+				$songList[] = $this->api->getOnlySong($item);//查询
+			}	
+			$data[$i]['rank_songList'] = $songList;
+			$songList = "";
+		}
+		$json_data = json_encode($data);
+		p($json_data);
+		
+	}
 	
 	/**
-	 * 排行榜 前三十(singer_area:0港台 1内地 2日韩 3欧美)
+	 * 排行榜详情页  前三十(singer_area:0港台 1内地 2日韩 3欧美)
 	 */
-	public function getHotSong(){
+	public function getAreaSong(){
 		$area_hk = 0;
 		$area_dl = 1;
 		$area_jk = 2;
 		$area_ea = 3;
+		
+		$data['area_hk'] = $this->api->hotAreaSongs($area_hk);
+		
+		$data['area_dl'] = $this->api->hotAreaSongs($area_dl);
+		
+		$data['area_jk'] = $this->api->hotAreaSongs($area_jk);
+		
+		$data['area_ea'] = $this->api->hotAreaSongs($area_ea);
+		
 
-		$data['area_hk'] = $this->api->hotSongs($area_hk);
-		
-		$data['area_dl'] = $this->api->hotSongs($area_dl);
-		
-		$data['area_jk'] = $this->api->hotSongs($area_jk);
-		
-		$data['area_ea'] = $this->api->hotSongs($area_ea);
-
-		p($data);
-		// $s= json_encode($data);
-		// p($s);
+		//p($data);
+		$s= json_encode($data);
+		p($s);
 	}
+	/**
+	 * 排行榜详情页  前三十(4 热度)
+	 */
+	public function getHotSong(){
+		$data['hot'] = $this->api->hotSongs();
+//		p($data);
+		 $s= json_encode($data);
+		 p($s);
+	}
+
 }  
