@@ -16,6 +16,7 @@ class Api_model extends CI_Model{
 		$data = $this->db->get('singers')->result_array();
 		return $data;
 	}
+	
 	/*
 	 *查询歌手对应的歌曲信息 
 	 */
@@ -26,22 +27,14 @@ class Api_model extends CI_Model{
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('albums','songs.album_mid=albums.album_mid')
 		->order_by('song_id', 'asc')->get()->result_array();
-//		$data = $this->db->get('songs')->result_array();
+		$data = $this->db->get('songs')->result_array();
 		return $data;
 	}
+	
 	/**
-	 * 0 港台 热度 (按收听量排行)
+	 * 港台  大陆 日韩 欧美 热度 (按收听量排行)
 	 */
-	public function hotSongs($areaIndex){
-//		$query = $this->db->get_where('songs', array('id' => $id), $limit, $offset);
-//		$this->db->select('song_mid,song_name,songs.album_mid,singers.singer_name,singer_type')
-//		->from('songs')
-//		->join('singers', 'songs.singer_mid=singers.singer_mid')
-//		->order_by('song_listencount','asc')
-//		->get()->result_array();
-////		
-//		$singers = $this->db->get_where('singers',array('singer_area' => '0'),10)->result_array();
-//		return $singers;
+	public function hotAreaSongs($areaIndex){
 		$this->db->where('singer_area',$areaIndex);
 		$this->db->limit(30);
 		$singers = $this->db->select('song_listencount,song_mid,song_name,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
@@ -51,6 +44,44 @@ class Api_model extends CI_Model{
 		->order_by('song_listencount','desc')
 		->get()->result_array();
 		return $singers;
+		
+	}
+	
+	/**
+	 * 热门  热度 (按收听量排行)
+	 */
+	public function hotSongs(){
+		$this->db->limit(30);
+		$singers = $this->db->select('song_listencount,song_mid,song_name,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
+		->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->join('albums','songs.album_mid=albums.album_mid')
+		->order_by('song_listencount','desc')
+		->get()->result_array();
+		return $singers;
+		
+	}
+	
+	/**
+	 * 排行榜页
+	 */
+	public function TopList(){
+		$topList = $this->db->select('listenCount,rank_picUrl,rank_topTitle,rank_songList,rank_type')
+		->from('rank')
+	//	->join('songs', 'songs.song_mid=r.singer_mid')
+//		->join('albums','songs.album_mid=albums.album_mid')
+		->order_by('listencount','desc')
+		->get()->result_array();
+		return $topList;
+		
+	}
+	
+	public function getOnlySong($mid){
+		$this->db->where('song_mid',$mid);
+		$data = $this->db->select('song_name,singers.singer_name')->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->get()->row_array();
+		return $data;
 		
 	}
 
