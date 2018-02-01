@@ -27,7 +27,6 @@ class Api_model extends CI_Model{
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('albums','songs.album_mid=albums.album_mid')
 		->order_by('song_id', 'asc')->get()->result_array();
-		$data = $this->db->get('songs')->result_array();
 		return $data;
 	}
 	
