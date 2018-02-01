@@ -60,8 +60,8 @@ class Api extends CI_Controller {
 		
 		$data['area_ea'] = $this->api->hotSongs($area_ea);
 
-		p($data);
-		// $s= json_encode($data);
-		// p($s);
+	//	p($data);
+		$s= json_encode($data);
+		p($s);
 	}
 }  
