@@ -83,5 +83,12 @@ class Api_model extends CI_Model{
 		return $data;
 		
 	}
+	
+	/**
+	 * 分类查询
+	 */
+	public function checkType(){
+		
+	}
 
 }
