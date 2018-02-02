@@ -23,7 +23,7 @@ class Api_model extends CI_Model{
 	public function checkSongs($mid){
 		$this->db->like('songs.singer_mid', $mid);
 		$data = $this->db->select('song_id, song_mid, song_name,songs.album_mid,albums.album_name,song_duration,
-		song_publish,song_listencount,song_source,singers.singer_name')->from('songs')
+		song_publish,song_listencount,singers.singer_name')->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('albums','songs.album_mid=albums.album_mid')
 		->order_by('song_id', 'asc')->get()->result_array();
@@ -36,7 +36,7 @@ class Api_model extends CI_Model{
 	public function hotAreaSongs($areaIndex){
 		$this->db->where('singer_area',$areaIndex);
 		$this->db->limit(30);
-		$singers = $this->db->select('song_listencount,song_mid,song_name,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
+		$singers = $this->db->select('song_listencount,song_id,song_mid,song_name,song_duration,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
 		->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('albums','songs.album_mid=albums.album_mid')
@@ -51,7 +51,7 @@ class Api_model extends CI_Model{
 	 */
 	public function hotSongs(){
 		$this->db->limit(30);
-		$singers = $this->db->select('song_listencount,song_mid,song_name,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
+		$singers = $this->db->select('song_listencount,song_id,song_mid,song_name,song_duration,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
 		->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('albums','songs.album_mid=albums.album_mid')

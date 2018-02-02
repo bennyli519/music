@@ -62,24 +62,20 @@ class Api extends CI_Controller {
 	}
 	
 	/**
-	 * 排行榜详情页  前三十(singer_area:0港台 1内地 2日韩 3欧美)
+	 * 排行榜详情页  前三十(singer_area:0港台 1内地 2日韩 3欧美 4热门)
 	 */
 	public function getAreaSong(){
-//		$area_hk = 0;
-//		$area_dl = 1;
-//		$area_jk = 2;
-//		$area_ea = 3;
+
+		/**
+		 * 	$area_hk = 0  $area_dl = 1 $area_jk = 2 $area_ea = 3
+		 */
+		$area_type = $_POST['area_type'];//获取类型
+		if(	$area_type == 4){
+			$data = $this->api->hotSongs();
+		}else{
+			$data = $this->api->hotAreaSongs($area_type);
+		}	
 		
-//		$data['area_hk'] = $this->api->hotAreaSongs($area_hk);
-//		
-//		$data['area_dl'] = $this->api->hotAreaSongs($area_dl);
-//		
-//		$data['area_jk'] = $this->api->hotAreaSongs($area_jk);
-//		
-//		$data['area_ea'] = $this->api->hotAreaSongs($area_ea);
-		$area_type = $_POST['area_type'];
-		$data = $this->api->hotAreaSongs($area_type);
-		//p($data);
 		$s= json_encode($data);
 		p($s);
 	}
