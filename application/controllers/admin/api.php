@@ -79,14 +79,82 @@ class Api extends CI_Controller {
 		$s= json_encode($data);
 		p($s);
 	}
+
 	/**
-	 * 排行榜详情页  前三十(4 热度)
+	 * 获取歌曲分类类型
 	 */
-	public function getHotSong(){
-		$data['hot'] = $this->api->hotSongs();
-//		p($data);
-		 $s= json_encode($data);
-		 p($s);
+	public function getTypeList(){
+		$typeList['songType'] = $this->api->checkType();
+		$typeList['singerType'] = array(
+			array(
+				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_202_10_6.jpg",
+				"title" => "内地",
+				"type_id" => "1"
+			),
+			array(
+				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_119_10_6.jpg",
+				"title" => "港台",
+				"type_id" => "0"
+			),
+			array(
+				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_120_10_6.jpg",
+				"title" => "欧美",
+				"type_id" => "3"
+			)
+		);
+		$typeList['dateType'] = array(
+			array(
+				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_122_10_5.jpg",
+				"title" => "70精选",
+				"date_id" => "2005"
+			),
+			array(
+				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_123_10_4.jpg",
+				"title" => "80精选",
+				"date_id" => "2010"
+			),
+			array(
+				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_124_10_4.jpg ",
+				"title" => "90精选",
+				"date_id" => "2015"
+			)
+
+		);
+		$json_type = json_encode($typeList);
+		p($json_type);
+	}
+	/**
+	 * 曲风类型 歌曲详情列表
+	 *
+	 * @return void
+	 */
+	public function getTypeSongList(){
+		$songList = $this->api->checkTypeSongList(1);
+		$json_type = json_encode($songList);
+		p($json_type);
+	}
+
+	/**
+	 * 歌手类别 歌曲详情列表
+	 *
+	 * @return void
+	 */
+	public function getTypeSingerList(){
+		$songList = $this->api->checkSingerTypeList(3);
+		$json_type = json_encode($songList);
+		p($json_type);
+	}
+
+	
+	/**
+	 * 年代分类 年代精选详情列表
+	 *
+	 * @return void
+	 */
+	public function getTypeDateList(){
+		$songList = $this->api->checkDateTimeList();
+		$json_type = json_encode($songList);
+		p($json_type);
 	}
 
 }  

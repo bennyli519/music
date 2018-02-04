@@ -75,6 +75,12 @@ class Api_model extends CI_Model{
 		
 	}
 	
+	/**
+	 * 通过歌曲Id查询排行榜前三歌曲
+	 *
+	 * @param [type] $mid
+	 * @return void
+	 */
 	public function getOnlySong($mid){
 		$this->db->where('song_mid',$mid);
 		$data = $this->db->select('song_name,singers.singer_name')->from('songs')
@@ -85,10 +91,64 @@ class Api_model extends CI_Model{
 	}
 	
 	/**
-	 * 分类查询
+	 * 分类 (歌曲类型)
 	 */
 	public function checkType(){
-		
+		$typeList = $this->db->get('type')->result_array();
+		return $typeList;
 	}
+
+	/**
+	 *  歌曲类型详情(传类型id)
+	 *
+	 * @param [type] $type_id
+	 * @return void
+	 */
+	public function checkTypeSongList($type_id){
+		$this->db->limit(30);
+		$this->db->where('type_id',$type_id);
+		$typeSongList = $this->db->select('song_listencount,type_id,song_id,song_mid,song_name,song_duration,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
+		->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->join('albums','songs.album_mid=albums.album_mid')
+		->order_by('song_listencount','desc')
+		->get()->result_array();
+		return $typeSongList;
+	}
+
+	/**
+	 * 歌手类别详情查询（0 港台 1大陆 3 欧美） 按发行时间排序
+	 *
+	 * @param [type] $areaIndex
+	 * @return void
+	 */
+	public function checkSingerTypeList($areaIndex){
+		$this->db->where('singer_area',$areaIndex);
+		$this->db->limit(100);
+		$singers = $this->db->select('song_listencount,song_id,song_mid,song_name,song_duration,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
+		->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->join('albums','songs.album_mid=albums.album_mid')
+		->order_by('song_publish','desc')
+		->get()->result_array();
+		return $singers;
+	}
+
+	/**
+	 * 分类 (年代详情查询)ist
+	 */
+	public function checkDateTimeList(){
+		$this->db->like('song_publish', '20');
+		$this->db->limit(100);
+		$songList =  $this->db->select('song_publish,song_listencount,song_id,song_mid,song_name,song_duration,singers.singer_name,songs.album_mid,albums.album_name')
+		->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->join('albums','songs.album_mid=albums.album_mid')
+		->order_by('song_publish','asc')
+		->get()->result_array();
+		return $songList;
+	}
+
+
 
 }
