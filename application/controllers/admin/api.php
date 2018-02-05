@@ -124,7 +124,7 @@ class Api extends CI_Controller {
 		p($json_type);
 	}
 	/**
-	 * 曲风类型 歌曲详情列表
+	 * type 歌曲详情列表
 	 *
 	 * @return void
 	 */
@@ -133,39 +133,19 @@ class Api extends CI_Controller {
 		$type_id = $_POST["type_id"];
 		switch($type_kind){
 			case 0:
+				//曲风类型 歌曲详情列表
 				$songList = $this->api->checkTypeSongList($type_id);
 				break;
 			case 1:
+				// 歌手类别 歌曲详情列表
 				$songList = $this->api->checkSingerTypeList($type_id);
 				break;
 			case 2:
+				//年代分类 年代精选详情列表
 				$songList = $this->api->checkDateTimeList($type_id);
 				break;
 		}
                   
-		$json_type = json_encode($songList);
-		p($json_type);
-	}
-
-	/**
-	 * 歌手类别 歌曲详情列表
-	 *
-	 * @return void
-	 */
-	public function getTypeSingerList(){
-		$songList = $this->api->checkSingerTypeList(3);
-		$json_type = json_encode($songList);
-		p($json_type);
-	}
-
-	
-	/**
-	 * 年代分类 年代精选详情列表
-	 *
-	 * @return void
-	 */
-	public function getTypeDateList(){
-		$songList = $this->api->checkDateTimeList();
 		$json_type = json_encode($songList);
 		p($json_type);
 	}

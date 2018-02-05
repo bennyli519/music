@@ -73,7 +73,7 @@ class Singer extends CI_Controller {
     /**
      * 添加歌手信息动作
      */
-    public function add_type(){
+    public function add_singer(){
     	//文件上传------------------------
 		//配置
 		$config['upload_path'] = './uploads/singers';

@@ -110,9 +110,9 @@
                     <li>
                         <a href="#"><i class="fa fa fa-list"></i> <span class="nav-label">歌单管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="#">创建歌单</a>
+                            <li><a href="<?php echo site_url('admin/songList/show_uplist')?>">创建歌单</a>
                             </li>
-                            <li><a href="#">歌单列表</a>
+                            <li><a href="<?php echo site_url('admin/songList/show_all')?>">歌单列表</a>
                             </li>
                         </ul>
                     </li>
@@ -192,66 +192,7 @@
                 <iframe frameboder="0" border="0" scrolling="yes" name="iframe" src="<?php echo site_url() . 'admin/admin/welcome' ?>"></iframe>
             </div>
 
-            <!-- <div id="content_wrapper">
-                <div class="row  border-bottom white-bg dashboard-header">
-                    <div class="col-sm-12">
-                        <blockquote class="text-warning" style="font-size:14px">
-                            <br>它倾倒你要经沮丧与兴奋
-                            <br>来自多少个极善感的心
-                            <br>谁把感想冥想出快慢与起伏
-                            <br>经历高低牵引催促它诞生
-                            <p></p>
-                            <h4 class="text-danger">——戴上耳机 你便拥有了全世界</h4>
-                        </blockquote>
-
-                        <hr>
-                    </div>
-                    <div class="col-sm-3">
-                        <h2>Hello,<?php echo $this->session->userdata('username') ?>!</h2>
-                        <small>iMusic访问请扫描以下二维码：</small>
-                        <br>
-                        <br>
-                        <img src="<?php echo base_url().'style/admin/img/qr_code.png'?>" width="100%" style="max-width:153px;">
-                        <br>
-                    </div>
-                    <div class="col-sm-5">
-                        <h2 class="mgb20"><strong>欢迎光临Music推荐管理系统后台</strong></h2>
-                        <p>
-                            <b>登录时间:</b><span class="label label-primary"><?php echo date('Y-m-d H:i:s',time()) ?></span>
-                        </p>
-                        <p>
-                            <b>用户数量:</b><span class="label label-warning">10个</span>
-                        </p>
-                        <br>
-                        <p>
-                            <a class="btn btn-success btn-outline" href="http://wpa.qq.com/msgrd?v=3&uin=516477188&site=qq&menu=yes" target="_blank">
-                                <i class="fa fa-qq"> </i> 联系我
-                            </a>
-                            <a class="btn btn-white btn-bitbucket" href="http://www.zi-han.net" target="_blank">
-                                <i class="fa fa-home"></i> 访问web版
-                            </a>
-                        </p>
-                    </div>
-                    <div class="col-sm-4">
-                        <h4>iMusic基本功能：</h4>
-                        <ol>
-                            <li>音乐分类(歌手类别分类,歌曲类型分类,时间年代分类);</li>
-                            <li>音乐搜索与下载;</li>
-                            <li>我的音乐坊;</li>
-                            <li>音乐赏析与评价;</li>
-                            <li>音乐电台;</li>
-                            <li>音乐热度统计(歌曲下载量,用户点评数);</li>
-                            <li class="text-danger">音乐关联推荐(协同过滤);</li>
-                            <li>音乐信息管理;</li>
-                            <li>音乐排行榜;</li>
-                            <li>音乐播放列表;</li>
-                            <li>更多……</li>
-                        </ol>
-                    </div>
-
-                </div>
-            </div> -->
-
+            
         </div>
     </div>
 
