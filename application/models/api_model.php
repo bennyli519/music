@@ -129,7 +129,7 @@ class Api_model extends CI_Model{
 		->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('albums','songs.album_mid=albums.album_mid')
-		->order_by('song_publish','desc')
+		->order_by('song_listencount','desc')
 		->get()->result_array();
 		return $singers;
 	}
@@ -137,8 +137,8 @@ class Api_model extends CI_Model{
 	/**
 	 * 分类 (年代详情查询)ist
 	 */
-	public function checkDateTimeList(){
-		$this->db->like('song_publish', '20');
+	public function checkDateTimeList($date){
+		$this->db->like('song_publish', $date);
 		$this->db->limit(100);
 		$songList =  $this->db->select('song_publish,song_listencount,song_id,song_mid,song_name,song_duration,singers.singer_name,songs.album_mid,albums.album_name')
 		->from('songs')

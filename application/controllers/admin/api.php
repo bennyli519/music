@@ -106,17 +106,17 @@ class Api extends CI_Controller {
 			array(
 				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_122_10_5.jpg",
 				"title" => "70精选",
-				"date_id" => "2005"
+				"type_id" => "2005"
 			),
 			array(
 				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_123_10_4.jpg",
 				"title" => "80精选",
-				"date_id" => "2010"
+				"type_id" => "2010"
 			),
 			array(
 				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_124_10_4.jpg ",
 				"title" => "90精选",
-				"date_id" => "2015"
+				"type_id" => "2015"
 			)
 
 		);
@@ -129,7 +129,20 @@ class Api extends CI_Controller {
 	 * @return void
 	 */
 	public function getTypeSongList(){
-		$songList = $this->api->checkTypeSongList(1);
+		$type_kind = $_POST["type_kind"];//类别
+		$type_id = $_POST["type_id"];
+		switch($type_kind){
+			case 0:
+				$songList = $this->api->checkTypeSongList($type_id);
+				break;
+			case 1:
+				$songList = $this->api->checkSingerTypeList($type_id);
+				break;
+			case 2:
+				$songList = $this->api->checkDateTimeList($type_id);
+				break;
+		}
+                  
 		$json_type = json_encode($songList);
 		p($json_type);
 	}
