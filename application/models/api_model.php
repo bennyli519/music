@@ -148,7 +148,56 @@ class Api_model extends CI_Model{
 		->get()->result_array();
 		return $songList;
 	}
-
-
-
+	/**
+	 *  歌单查询
+	 */
+	public function checkSonglist(){
+		$songList = $this->db->select('list_id,list_name,list_total,list_intro,list_thumb,list_author,list_songs')
+		->from('lists')
+		->order_by('list_total','desc')
+		->get()->result_array();
+		return $songList;
+	}
+	/**
+	 *  歌单详情查询
+	 */
+	public function checkDetailSonglist($list_id){
+		$this->db->where('list_id',$list_id);
+		$songList = $this->db->select('list_songs')
+		->from('lists')
+		->order_by('list_total','desc')
+		->get()->result_array();
+		return $songList;
+	}
+		/**
+	 * 通过歌单Id查询歌曲
+	 *
+	 * @param [type] $mid
+	 * @return void
+	 */
+	public function getListSong($mid){
+		$this->db->where('song_mid',$mid);
+		$data = $this->db->select('song_id,song_mid,song_name,song_duration,singers.singer_name,songs.album_mid,albums.album_name')->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->join('albums','songs.album_mid=albums.album_mid')
+		->get()->row_array();
+		return $data;
+		
+	}
+	/**
+	 * 新歌速递
+	 *
+	 * @param [type] $mid
+	 * @return void
+	 */
+	public function getNewSong(){
+		$this->db->limit(10);
+		$data = $this->db->select('song_publish,song_id,song_mid,song_name,song_duration,singers.singer_name,songs.album_mid,albums.album_name')->from('songs')
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		->join('albums','songs.album_mid=albums.album_mid')
+		->order_by('song_publish','desc')
+		->get()->result_array();
+		return $data;
+	}
+		
 }

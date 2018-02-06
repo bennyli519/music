@@ -149,5 +149,33 @@ class Api extends CI_Controller {
 		$json_type = json_encode($songList);
 		p($json_type);
 	}
-
+	/**
+	 * 获取歌单
+	 */
+	public function getDiscList(){
+		$data = $this->api->checkSonglist();
+		$json_type = json_encode($data);
+		p($json_type);
+	}
+	public function getDiscDetail(){
+		$list_id = $_POST['list_id'];
+		$data = $this->api->checkDetailSonglist($list_id);
+		$a= $data[0]['list_songs'];
+		$arr = explode("/",$a);		//切割mid
+		foreach($arr as $key => $item){
+			$songList[] = $this->api->getListSong($item);//查询
+		}	
+		$data[0]['list_songs'] = $songList;
+		$json_type = json_encode($data);
+		p($json_type);
+		
+	}
+	/**
+	 * 新歌速递
+	 */
+	public function getNewSong(){
+		$data = $this->api->getNewSong();
+		$json_type = json_encode($data);
+		p($json_type);
+	}
 }  
