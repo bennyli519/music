@@ -28,6 +28,8 @@ class SongList extends CI_Controller {
 	 */
 	
 	public function show_all(){
+		$songlist = $this->list->check();
+		p($songlist);
 		$this->load->view("music-list/music-list-check.html");
 	}
     /**

@@ -71,17 +71,29 @@
                                       <tbody>
                                         <?php foreach($song as $v): ?>
                                         <tr>
-                                            <th scope="row"><?php echo $v['song_id']?></th>                               
+                                            <th scope="row"><?php echo $v['song_id']?></th>   
                                             <td><?php echo $v['song_name']?></td>
                                             <td><?php echo $v['singer_name']?></td>
                                             <td><?php echo $v['type_name']?></td>
                                             <td>
+                                 			<div class="dropdown profile-element" style="display: inline-block;"> 
+                 	
+					                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+					                             	<span class="text-muted text-xs block">添加到歌单 <b class="caret"></b></span>
+					                            </a>
+					                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+					                            	 <?php foreach($songlist as $list): ?>
+					                                <li><a href="<?php echo site_url('admin/song/add_to_list/' . $v['song_mid'].'/'. $list['list_id']) ?>"><?php echo $list['list_name'] ?></a></li>
+ 													<?php endforeach ?>
+					                            </ul>
+					                        </div>
                                             <a href="<?php echo site_url('admin/song/del_song/' . $v['song_id']) ?>" id="remove" class="btn btn-danger">删除</a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
                                       </tbody>
                                     </table>
+                 				
                                     <nav  class="text-center" aria-label="Page navigation"> 
 									  <ul class="pagination">
 									  	<?php echo $links ?>
@@ -97,6 +109,7 @@
  <!-- Mainly scripts -->
     <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
     <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
+    
     <script src="<?php echo base_url().'style/admin/js/plugins/slimscroll/jquery.slimscroll.min.js'?>"></script>
 
 

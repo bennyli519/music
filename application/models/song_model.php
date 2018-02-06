@@ -14,7 +14,7 @@ class Song_model extends CI_Model{
 	 */
 	
 	public function check(){
-		$data = $this->db->select('song_id,song_name,singer_name,type_name')->from('songs')
+		$data = $this->db->select('song_id,song_mid,song_name,singer_name,type_name')->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('type','songs.type_id=type.type_id')
 		->order_by('song_id', 'asc')->get()->result_array();

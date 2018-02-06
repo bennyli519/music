@@ -18,6 +18,7 @@ class Song extends CI_Controller {
         $this->load->model('singer_model','singer');//加载歌手音乐模型
         $this->load->model('song_model','song');
         $this->load->model('album_model','album');
+        $this->load->model('songList_model','list');
     }
 
     /**
@@ -43,7 +44,7 @@ class Song extends CI_Controller {
 
 		//配置项设置
 		$config['base_url'] = site_url('admin/song/song_list_view');
-		$config['total_rows'] = $this->db->count_all_results('songs');
+		$config['total_rows'] = 2340;
 		$config['per_page'] = $perPage;
 		$config['uri_segment'] = 4;
 		
@@ -75,6 +76,7 @@ class Song extends CI_Controller {
 		$this->db->limit($perPage, $offset);
 		
 		$data['song'] = $this->song->check();
+		$data['songlist'] = $this->list->check();
 		$this->load->view("music-song/music-song-check.html",$data);
 	}
 	
@@ -124,10 +126,30 @@ class Song extends CI_Controller {
 			'singer_id'   => $singer_id
 		);
 		$this->song->add($data);
-		success('admin/singer/singer_list_view','添加成功');
+		success('admin/song/song_list_view','添加成功');
 
     }
+    /**
+     * 添加到歌单
+     */
+    public function add_to_List(){
+    	$song_mid = $this->uri->segment(4);
+    	$list_id = $this->uri->segment(5);
+    	$data = array(
+    		'list_songs' => $song_mid
+    	);
+    	//$data['list_songs'];
+    	$listsong = $this->list->checkList($list_id);//先查歌单里头有没有歌曲
+    //	p($listsong['list_songs']);
+    	if($listsong[0]['list_songs'] == ""){
+    		$data['list_songs'] = $listsong[0]['list_songs'].$data['list_songs'];
+    	}else{
+    		$data['list_songs'] = $listsong[0]['list_songs'].'/'.$data['list_songs'];
+    	}
     
+    	$this->list->edit($list_id,$data);
+    	echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
 	/**
 	 * 歌曲信息修改动作
 	 */

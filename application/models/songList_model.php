@@ -12,9 +12,20 @@ class SongList_model extends CI_Model{
 	 * 查询
 	 */
 	public function check(){
-		$data = $this->db->get('type')->result_array();
+		$data = $this->db->get('lists')->result_array();
 		return $data;
 	}
+	
+	/**
+	 * 编辑
+	 */
+	public function checkList($list_id){
+		$this->db->where('list_id',$list_id);
+		$query = $this->db->select('list_songs')
+		->from('lists')->get()->result_array();
+		return $query;
+	}
+	
 	/**
 	 * 添加
 	 */
@@ -26,8 +37,8 @@ class SongList_model extends CI_Model{
 	/**
 	 * 编辑
 	 */
-	public function edit($uid, $data){
-		$this->db->update('type', $data, array('type_id'=>$uid));
+	public function edit($list_id, $data){
+		$this->db->update('lists', $data, array('list_id'=>$list_id));
 	}
 	/**
 	 * 删除
