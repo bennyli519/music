@@ -64,38 +64,33 @@
                                           <th>#</th>
                                           <th>歌单名</th>
                                           <th>歌单类别</th>
+                                          <th>作者</th>
                                           <th>发布时间</th>
                                           <th>操作</th>
                                         </tr>
                                       </thead>
                                       <tbody>
+                                      	<?php foreach($songlist as $v): ?>
                                         <tr>
-                                            <th scope="row">1</th>                               
-                                            <td>那些年少轻狂</td>
-                                            <td>精选</td>
-                                            <td>xxxxxxxxxxxxxxxxxxx</td>
+                                            <th scope="row"><?php echo $v['list_id']?></th>                               
+                                            <td><?php echo $v['list_name']?></td>
+                                            <td><?php 
+                                            		if($v['list_type'] == 1){
+                                            			echo '精选';
+                                            		}else if($v['list_type'] == 2){
+                                            			echo '热门';
+                                            		}else{
+                                            			echo '最新';
+                                            		}
+                                            	
+                                            	?></td>
+                                            <td><?php echo $v['list_author']?></td>
+                                            <td><?php echo $v['list_publish']?></td>
                                             <td>
                                                 <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a> <a href="#" id="edit" class="btn btn-primary mgr15">查看歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>                               
-                                            <td>那些年少轻狂</td>
-                                            <td>精选</td>
-                                            <td>xxxxxxxxxxxxxxxxxxx</td>
-                                            <td>
-                                                <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a> <a href="#" id="edit" class="btn btn-primary mgr15">查看歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>                               
-                                            <td>那些年少轻狂</td>
-                                            <td>精选</td>
-                                            <td>xxxxxxxxxxxxxxxxxxx</td>
-                                            <td>
-                                                <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a> <a href="#" id="edit" class="btn btn-primary mgr15">查看歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a>
-                                            </td>
-                                        </tr>
+                                        </tr> 
+                                        <?php endforeach ?>
                                       </tbody>
                                     </table>
 

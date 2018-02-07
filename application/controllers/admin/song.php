@@ -32,7 +32,7 @@ class Song extends CI_Controller {
 	
 		
 	/**
-	 * 查看歌手视图加载（分页）
+	 * 查看歌曲视图加载（分页）
 	 */
 	
 	public function song_list_view(){
@@ -113,6 +113,8 @@ class Song extends CI_Controller {
         $song_name = $this->input->post('song_name');
         $song_type = $this->input->post('type_id');
         $singer_id = $this->input->post('singer_id');
+       //专辑名(暂时用爬来来的专辑,如果自己添加歌曲，插入专辑名+自己制作mid作为主键)
+        $ablum_name = $this->input->post('album_name');
         $song_source = $info['song'];//上传MP3文件
         $song_lyics = $info['lyics'];//上传歌词文件
         $song_date = $this->input->post('song_date');
@@ -148,7 +150,7 @@ class Song extends CI_Controller {
     	}
     
     	$this->list->edit($list_id,$data);
-    	echo "<script type='text/javascript'>alert('$msg');</script>";
+    	success('admin/song/song_list_view','添加成功');
     }
 	/**
 	 * 歌曲信息修改动作

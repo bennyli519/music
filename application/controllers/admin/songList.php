@@ -28,9 +28,8 @@ class SongList extends CI_Controller {
 	 */
 	
 	public function show_all(){
-		$songlist = $this->list->check();
-		p($songlist);
-		$this->load->view("music-list/music-list-check.html");
+		$songlist['songlist'] = $this->list->check();
+		$this->load->view("music-list/music-list-check.html",$songlist);
 	}
     /**
      * 添加歌单动作
@@ -52,7 +51,7 @@ class SongList extends CI_Controller {
 		);
 		
 		$this->list->add($data);
-		success('admin/type/show_all','添加成功');
+		success('admin/songlist/show_all','添加成功');
     }
 	/**
 	 * 修改动作
