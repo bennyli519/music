@@ -178,4 +178,37 @@ class Api extends CI_Controller {
 		$json_type = json_encode($data);
 		p($json_type);
 	}
+	/**
+	 * 获取电台页面
+	 */
+	public function getBroadCast(){
+		$data = $this->api->checkCastlist();
+		$json_type = json_encode($data);
+		p($json_type);
+	}  
+
+	/**
+	 * 电台详情
+	 *
+	 * @return void
+	 */
+	public function getCastSongList(){
+		//$cast_id = $_POST['cast_id'];
+		$cast_id = 5;
+		$data = $this->api->checkDetailCastList($cast_id);
+		$a= $data[0]['broadcast_list'];
+		$arr = explode("/",$a);		//切割mid
+		foreach($arr as $key => $item){
+			$song = $this->api->getListSong($item);
+			if($song == null){
+				continue;
+			}else{
+				$songList[] = $this->api->getListSong($item);//查询
+			}
+		}	
+		$data[0]['list_songs'] = $songList;
+		$json_type = json_encode($data);
+		p($json_type);
+	}
+	
 }  

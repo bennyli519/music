@@ -200,4 +200,24 @@ class Api_model extends CI_Model{
 		return $data;
 	}
 		
+	/**
+	 *  电台查询
+	 */
+	public function checkCastlist(){
+		$castList = $this->db->select('broadcast_id,broadcast_name,broadcast_author,broadcast_intro,broadcast_list,broadcast_thumb,broadcast_count')
+		->from('broadcast')
+		->order_by('broadcast_type','asc')
+		->get()->result_array();
+		return $castList;
+	}
+	/**
+	 *  电台详情查询
+	 */
+	public function checkDetailCastList($cast_id){
+		$this->db->where('broadcast_id',$cast_id);
+		$songList = $this->db->select('broadcast_list')
+		->from('broadcast')
+		->get()->result_array();
+		return $songList;
+	}
 }

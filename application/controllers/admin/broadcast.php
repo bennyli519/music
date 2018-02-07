@@ -51,15 +51,18 @@ class Broadcast extends CI_Controller {
 		$this->broad->add($data);
 		success('admin/broadcast/show_all','添加成功');
 	}
+	/**
+	 * 处理歌曲id 并且添加到电台表中
+	 */
 	public function getMidList($arr,$cast_id){
 		$midList = "";
 		foreach($arr as $value){
 			$midList = $midList.$value['song_mid'].'/';
 		}
-		$midList = rtrim($midList, "/");
 		$midData = array(
-			'broadcast_list' => $midList
+			'broadcast_list' => rtrim($midList, "/")
 		);
+		p($midData);
 		$this->broad->addToBroadcast($cast_id,$midData);
 		success("admin/broadcast/show_all","收录成功");
 	}
