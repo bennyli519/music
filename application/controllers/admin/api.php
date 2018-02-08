@@ -193,8 +193,7 @@ class Api extends CI_Controller {
 	 * @return void
 	 */
 	public function getCastSongList(){
-		//$cast_id = $_POST['cast_id'];
-		$cast_id = 5;
+		$cast_id = $_POST['cast_id'];
 		$data = $this->api->checkDetailCastList($cast_id);
 		$a= $data[0]['broadcast_list'];
 		$arr = explode("/",$a);		//切割mid
@@ -206,9 +205,32 @@ class Api extends CI_Controller {
 				$songList[] = $this->api->getListSong($item);//查询
 			}
 		}	
-		$data[0]['list_songs'] = $songList;
+		$data[0]['broadcast_list'] = $songList;
 		$json_type = json_encode($data);
 		p($json_type);
 	}
-	
+	/**
+	 * 协同算法
+	 */
+	public function test(){
+		$train=array(  
+			array(1,11),        //array(userid,itemid)  
+			array(1,12),  
+			array(1,14),  
+			array(2,11),  
+			array(2,13),  
+			array(3,12),  
+			array(3,15),  
+			array(4,13),  
+			array(4,14),  
+			array(4,15),  
+		);  
+		$item_user=array(); //存放物品列表  
+		for($i=0;$i<count($train);$i++){  
+			$item=$train[$i][1];  
+			$user=$train[$i][0];  
+			$item_user[$item][]=$user;  
+		}    
+		p($item_user);
+	}
 }  
