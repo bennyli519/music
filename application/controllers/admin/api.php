@@ -22,6 +22,29 @@ class Api extends CI_Controller {
 		header('Access-Control-Allow-Methods: GET, POST, PUT,DELETE');
 	}
 	
+	//用户验证
+	public function checkUser(){
+		$name = $_POST['user']; //用户名
+	    $password = $_POST['pwd'];//密码
+		//$name = "benny";
+		$userData = $this->api->checkUser($name);
+		$arr[] = array(
+			'Rstatus' =>'false',
+			'user_id' =>$userData[0]['user_id'],
+			'user_name'=>$userData[0]['user_name'],
+			'user_avtar'=>$userData[0]['user_avtar']
+		);
+		
+
+		if(!$userData || $userData[0]['user_pwd'] != md5($password)){
+			echo 'failed';
+		}else{
+			$arr[0]['Rstatus'] = true;
+			$a = json_encode($arr);
+			p($a);
+		}
+		
+	}
 	//接口 发送歌手数据
 	public function sendSingersMes(){
 		$singerList = $this->api->checkSingers();
@@ -231,6 +254,19 @@ class Api extends CI_Controller {
 			$user=$train[$i][0];  
 			$item_user[$item][]=$user;  
 		}    
-		p($item_user);
+		$N=array(); //$N[u]表示用户u使用过的物品总数  
+		$C=array(); //C[u][v]=|N(u)∩N(u)|  
+		foreach($item_user as $user){  
+			for($i=0;$i<count($user);$i++){  
+				$N[$user[$i]]+=1;  
+				for($j=0;$j<count($user);$j++){  
+					if($user[$i]!=$user[$j]){  
+						$C[$user[$i]][$user[$j]]+=1;  
+					}  
+				}  
+			}  
+		}  
+		p($c);
+		
 	}
 }  

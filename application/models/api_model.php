@@ -9,6 +9,13 @@
  */
 class Api_model extends CI_Model{
 	/**
+	 * 登陆验证
+	 */
+	public function checkUser($username){
+		$data = $this->db->get_where('users', array('user_name'=>$username,'user_type'=>'1'))->result_array();
+		return $data;
+	}
+	/**
 	 * 查询歌手信息
 	 */
 	public function checkSingers(){
