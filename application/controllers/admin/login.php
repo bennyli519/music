@@ -19,7 +19,6 @@ class Login extends CI_Controller {
      * 登录动作
      */
     public function login_in(){
-        window.open("http://isure.stream.qqmusic.qq.com/C100001CG3wA3QkuJS.m4a?fromtag=32");
         // 检查是否开启session
         if(!isset($_SESSION)){
             session_start();

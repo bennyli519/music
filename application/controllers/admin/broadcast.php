@@ -72,10 +72,8 @@ class Broadcast extends CI_Controller {
 	 */
 	public function update_broadcast(){
 		//broadcast类型 1个性 2精选 3热门 4最新 5随心听
-		$cast_id = $this->uri->segment(4);
-		$data = $this->broad->checkList($cast_id);
-	
-		switch($data[0]['broadcast_type'])
+		$cast_id = $this->uri->segment(4);	
+		switch($cast_id)
 		{
 			case 1:
 				//个性电台

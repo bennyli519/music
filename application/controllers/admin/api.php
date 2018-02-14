@@ -5,7 +5,7 @@
  * @Author: jerryLi 
  * @Date: 2017-12-17 12:27:21 
  * @Last Modified by: jerryLi
- * @Last Modified time: 2017-12-17 12:27:51
+ * @Last Modified time: 2018-2-14 12:27:51
  */
 
 class Api extends CI_Controller {
@@ -129,7 +129,6 @@ class Api extends CI_Controller {
 			array(
 				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_122_10_5.jpg",
 				"title" => "70精选",
-				"type_id" => "2005"
 			),
 			array(
 				"picUrl"=> "http://y.gtimg.cn/music/photo/radio/track_radio_123_10_4.jpg",
