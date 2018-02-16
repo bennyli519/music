@@ -184,7 +184,8 @@ class Api_model extends CI_Model{
 	 */
 	public function getListSong($mid){
 		$this->db->where('song_mid',$mid);
-		$data = $this->db->select('song_id,song_mid,song_name,song_duration,singers.singer_name,songs.album_mid,albums.album_name')->from('songs')
+		$data = $this->db->select('song_id,song_mid,song_name,song_duration,singers.singer_name,songs.album_mid,albums.album_name')
+		->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
 		->join('albums','songs.album_mid=albums.album_mid')
 		->get()->row_array();
@@ -226,5 +227,26 @@ class Api_model extends CI_Model{
 		->from('broadcast')
 		->get()->result_array();
 		return $songList;
+	}
+
+	/**
+	 * 插入评论内容
+	 */
+
+	public function addComment($data){
+		$this->db->insert('comment',$data);
+	}
+
+	/*
+	 * 查询评论
+	 */
+	public function check_comment($mid){
+		$this->db->where('song_mid',$mid);
+		$data = $this->db->select('comment_id,comment_content,comment_time,user_name,user_avtar')
+		->from('comment')
+		->join('users', 'from_uid=user_id')
+		->order_by('comment_id', 'asc')
+		->get()->result_array();
+		return $data;
 	}
 }

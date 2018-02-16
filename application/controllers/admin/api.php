@@ -232,6 +232,42 @@ class Api extends CI_Controller {
 		p($json_type);
 	}
 	/**
+	 * 发表评论
+	 *
+	 * @return void
+	 */
+	public function addComment(){
+		$mid = $_POST['mid'];//歌曲mid
+		$user_id = $_POST['user_id'];//用户id
+		$comment = $_POST['comment'];//评论内容
+		$dt = new DateTime();
+		$date = $dt->format('Y-m-d H:i:s');
+		$data = array(
+			'comment_content' => $comment,
+			'song_mid' => $mid,
+			'from_uid' => $user_id,
+			'comment_time' => $date
+		);
+		$this->api->addComment($data);
+		$content = $this->api->check_comment($mid);
+		$json_type = json_encode($content);
+		p($json_type);
+		//p("发表成功");
+	}
+	/**
+	 * 查看评论
+	 *
+	 * @return void
+	 */
+	public function checkComment(){
+		$mid = $_POST['mid'];//歌曲mid
+		//$mid = "003tefnw2xS3QA";
+		$content = $this->api->check_comment($mid);
+		$json_type = json_encode($content);
+		p($json_type);
+		//p("发表成功");
+	}
+	/**
 	 * 协同算法
 	 */
 	public function test(){
