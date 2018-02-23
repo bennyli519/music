@@ -857,7 +857,9 @@ if ( ! function_exists('function_usable'))
  * @return [type]      [description]
  */
 function p($arr){
+	echo "<pre>";
 	print_r($arr);
+	echo "</pre>";
 }
 // admin/category/index
 /**

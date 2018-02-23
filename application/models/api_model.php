@@ -249,4 +249,18 @@ class Api_model extends CI_Model{
 		->get()->result_array();
 		return $data;
 	}
+	/**
+	 * 获取收藏表(用户＋歌曲id)
+	 *
+	 * @return void
+	 */
+	public function get_collect(){
+		$data = $this->db->select('user_name,song_name')
+		->from('collect')
+		->join('users', 'users.user_id = collect.user_id')
+		->join('songs','songs.song_mid=collect.song_mid' )
+		->order_by('collect_id', 'asc')
+		->get()->result_array();
+		return $data;
+	}
 }
