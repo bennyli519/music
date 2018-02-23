@@ -279,7 +279,8 @@ class Api extends CI_Controller {
 		//echo "计算物品相似度<br>";
 		//p($W);
 		$recommend = array();
-		$rank = $this->recommend($train,"benny",$W,5);   //推荐歌曲
+		$username = $_POST['name'];
+		$rank = $this->recommend($train,$username,$W,5);   //推荐歌曲
 		// for($i=0;$i<count($rank);$i++){
 		// 	array_push($recommend,$rank[$i])
 		// }
