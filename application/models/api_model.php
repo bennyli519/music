@@ -255,7 +255,7 @@ class Api_model extends CI_Model{
 	 * @return void
 	 */
 	public function get_collect(){
-		$data = $this->db->select('user_name,song_name')
+		$data = $this->db->select('user_name,collect.song_mid,song_name')
 		->from('collect')
 		->join('users', 'users.user_id = collect.user_id')
 		->join('songs','songs.song_mid=collect.song_mid' )
