@@ -4,10 +4,11 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
 
-   	<title>歌曲库</title>
-   	<meta name="keywords" content="imusic后台管理系统，音乐推荐系统">
+    <title>歌曲库</title>
+    <meta name="keywords" content="imusic后台管理系统，音乐推荐系统">
     <meta name="description" content="imusic后台管理系统">
 
     <link href="<?php echo base_url().'style/admin/css/bootstrap.min.css' ?>" rel="stylesheet">
@@ -15,111 +16,131 @@
     <link href="<?php echo base_url().'style/admin/css/animate.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'style/admin/css/style.css'?>" rel="stylesheet">
     <style>
-        body{
-            background:transparent;
+        body {
+            background: transparent;
         }
-       	.mgl10{
-       		margin-left: 10px;
-       	}
-       	   #edit{
-        	border-color: transparent;
+        
+        .mgl10 {
+            margin-left: 10px;
         }
-        textarea.active{
-        	border:1px solid green !important;
+        
+        #edit {
+            border-color: transparent;
         }
-        textarea:hover{
-        	cursor: pointer;
-        	border:1px solid green !important;
+        
+        textarea.active {
+            border: 1px solid green !important;
         }
+        
+        textarea:hover {
+            cursor: pointer;
+            border: 1px solid green !important;
+        }
+        
         .page strong {
-		    margin-left: 2px;
-		    border: 1px solid #ccc;
-		    padding: 3px;
-		    font-weight: 400;
-		}
-		.page a {
-		    margin-left: 2px;
-		    border: 1px solid #ccc;
-		    padding: 3px;
-		}
+            margin-left: 2px;
+            border: 1px solid #ccc;
+            padding: 3px;
+            font-weight: 400;
+        }
+        
+        .page a {
+            margin-left: 2px;
+            border: 1px solid #ccc;
+            padding: 3px;
+        }
     </style>
 
 </head>
 
 <body>
 
-        
+
     <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>歌曲库</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                      <thead>
-                                        <tr>
-                                          <th>#</th>
-                                          <th>歌曲名</th>
-                                          <th>歌手名</th>
-                                          <th>专辑名</th>
-                                          <th>歌曲类型</th>
-                                          <th>操作</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <?php foreach($song as $v): ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $v['song_id']?></th>   
-                                            <td><?php echo $v['song_name']?></td>
-                                            <td><?php echo $v['singer_name']?></td>
-                                            <td><?php echo $v['album_name']?></td>
-                                            <td><?php echo $v['type_name']?></td>
-                                            <td>
-                                 			<div class="dropdown profile-element" style="display: inline-block;"> 
-                 	
-					                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-					                             	<span class="text-muted text-xs block">添加到歌单 <b class="caret"></b></span>
-					                            </a>
-					                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-					                            	 <?php foreach($songlist as $list): ?>
-					                                <li><a href="<?php echo site_url('admin/song/add_to_list/' . $v['song_mid'].'/'. $list['list_id']) ?>"><?php echo $list['list_name'] ?></a></li>
- 													<?php endforeach ?>
-					                            </ul>
-					                        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>歌曲库</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>歌曲名</th>
+                                        <th>歌手名</th>
+                                        <th>专辑名</th>
+                                        <th>歌曲类型</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($song as $key => $v): ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <?php echo $key+1; ?>
+                                        </th>
+                                        <td>
+                                            <?php echo $v['song_name']?>
+                                        </td>
+                                        <td>
+                                            <?php echo $v['singer_name']?>
+                                        </td>
+                                        <td>
+                                            <?php echo $v['album_name']?>
+                                        </td>
+                                        <td>
+                                            <?php echo $v['type_name']?>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown profile-element" style="display: inline-block;">
+
+                                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                                    <span class="text-muted text-xs block">添加到歌单 <b class="caret"></b></span>
+                                                </a>
+                                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                                    <?php foreach($songlist as $list): ?>
+                                                    <li>
+                                                        <a href="<?php echo site_url('admin/song/add_to_list/' . $v['song_mid'].'/'. $list['list_id']) ?>">
+                                                            <?php echo $list['list_name'] ?>
+                                                        </a>
+                                                    </li>
+                                                    <?php endforeach ?>
+                                                </ul>
+                                            </div>
                                             <a href="<?php echo site_url('admin/song/del_song/' . $v['song_id']) ?>" id="remove" class="btn btn-danger">删除</a>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach ?>
-                                      </tbody>
-                                    </table>
-                 				
-                                    <nav  class="text-center" aria-label="Page navigation"> 
-									  <ul class="pagination">
-									  	<?php echo $links ?>
-									  </ul>
-									</nav>
-                                  </div>
-                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+
+                            <nav class="text-center" aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <?php echo $links ?>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
-           
- <!-- Mainly scripts -->
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
     <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
     <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
-    
+
     <script src="<?php echo base_url().'style/admin/js/plugins/slimscroll/jquery.slimscroll.min.js'?>"></script>
 
 
-	 <!-- iCheck -->
-	 <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
-     
+    <!-- iCheck -->
+    <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
+
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',

@@ -112,7 +112,7 @@ class Song extends CI_Controller {
         }
         $song_name = $this->input->post('song_name');
         $song_type = $this->input->post('type_id');
-        $singer_id = $this->input->post('singer_id');
+        $singer_mid = $this->input->post('singer_mid');
        //专辑名(暂时用爬来来的专辑,如果自己添加歌曲，插入专辑名+自己制作mid作为主键)
         $ablum_name = $this->input->post('album_name');
         $song_source = $info['song'];//上传MP3文件
@@ -125,7 +125,7 @@ class Song extends CI_Controller {
             'song_source' => $song_source['file_name'],
 			'song_lyics'  => $song_lyics['file_name'],
 			'type_id'     => $song_type,
-			'singer_id'   => $singer_id
+			'singer_mid'   => $singer_mid
 		);
 		$this->song->add($data);
 		success('admin/song/song_list_view','添加成功');

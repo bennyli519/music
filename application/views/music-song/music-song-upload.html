@@ -4,10 +4,11 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
 
     <title>上传歌曲</title>
-   	<meta name="keywords" content="imusic后台管理系统，音乐推荐系统">
+    <meta name="keywords" content="imusic后台管理系统，音乐推荐系统">
     <meta name="description" content="imusic后台管理系统">
 
     <link href="<?php echo base_url().'style/admin/css/bootstrap.min.css' ?>" rel="stylesheet">
@@ -15,8 +16,8 @@
     <link href="<?php echo base_url().'style/admin/css/animate.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'style/admin/css/style.css'?>" rel="stylesheet">
     <style>
-        body{
-            background:transparent;
+        body {
+            background: transparent;
         }
     </style>
 
@@ -24,92 +25,92 @@
 
 <body>
 
-        
-    <div class="wrapper wrapper-content animated fadeInRight">
-       <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>歌曲上传</h5>
-                            </div>
-                            <div class="ibox-content">
-                                    <form method="post" class="form-horizontal" action="<?php echo site_url('admin/song/add_song')?>" enctype="multipart/form-data">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">歌曲名称:</label>
-        
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" name="song_name">
-                                                </div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">歌曲类型:</label>
-        
-                                                <div class="col-sm-5">
-                                                    <select class="form-control m-b" name="type_id">
-                                                        <?php foreach($type as $v): ?>
-                                                        <option value="<?php echo $v['type_id'] ?>"<?php echo set_select('type_id', $v['type_id']) ?>><?php echo $v['type_name'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">歌手:</label>
-        
-                                                <div class="col-sm-5">
-                                                    <select class="form-control m-b" name="singer_id">
-                                                        <?php foreach($singer as $v): ?>
-                                                        <option value="<?php echo $v['singer_id'] ?>"<?php echo set_select('singer_id', $v['singer_id']) ?>><?php echo $v['singer_name'] ?></option>
-                                                        <?php endforeach ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">专辑:</label>
-        
-                                                <div class="col-sm-5">
-                                                  	<input type="text" class="form-control" name="ablum_name">
-                                                </div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">歌曲上传:</label>
-        
-                                                <div class="col-sm-10">
-                                                    <input type="file" name="song" class="projectfile" />
-                                                </div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">歌词上传:</label>
-        
-                                                <div class="col-sm-10">
-                                                    <input type="file" name="lyics" class="projectfile" />
-                                                </div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">发行时间:</label>
-                                                <div class="col-sm-10">
-                                                    <input id="hello" class="laydate-icon form-control layer-date" name="song_date">
-                                                </div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group">
-                                                <div class="col-sm-4 col-sm-offset-2">
-                                                    <button class="btn btn-primary" type="submit">添加</button>
-                                                </div>
-                                            </div>
 
-                                    </form>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>歌曲上传</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" action="<?php echo site_url('admin/song/add_song')?>" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌曲名称:</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="song_name">
+                                </div>
                             </div>
-                        </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌曲类型:</label>
+
+                                <div class="col-sm-5">
+                                    <select class="form-control m-b" name="type_id">
+                                        <?php foreach($type as $v): ?>
+                                        <option value="<?php echo $v['type_id'] ?>"<?php echo set_select('type_id', $v['type_id']) ?>><?php echo $v['type_name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌手:</label>
+
+                                <div class="col-sm-5">
+                                    <select class="form-control m-b" name="singer_mid">
+                                        <?php foreach($singer as $v): ?>
+                                        <option value="<?php echo $v['singer_mid'] ?>"<?php echo set_select('singer_mid', $v['singer_mid']) ?>><?php echo $v['singer_name'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">专辑:</label>
+
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="ablum_name">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌曲上传:</label>
+
+                                <div class="col-sm-10">
+                                    <input type="file" name="song" class="projectfile" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌词上传:</label>
+
+                                <div class="col-sm-10">
+                                    <input type="file" name="lyics" class="projectfile" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">发行时间:</label>
+                                <div class="col-sm-10">
+                                    <input id="hello" class="laydate-icon form-control layer-date" name="song_date">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">添加</button>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
     </div>
-     <!-- Mainly scripts -->
+    <!-- Mainly scripts -->
     <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
     <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
     <script src="<?php echo base_url().'style/admin/js/plugins/metisMenu/jquery.metisMenu.js'?>"></script>
@@ -119,20 +120,19 @@
     <script src="<?php echo base_url().'style/admin/js/hplus.js'?>"></script>
     <script src="<?php echo base_url().'style/admin/js/plugins/pace/pace.min.js'?>"></script>
 
-     <!-- iCheck -->
-     <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
-     <!-- layerDate plugin javascript -->
-     <script src="<?php echo base_url().'style/admin/js/plugins/layer/laydate/laydate.js'?>"></script>
-     <script>
-         //外部js调用
-         laydate({
-             elem: '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
-             event: 'focus' //响应事件。如果没有传入event，则按照默认的click
-         });
- 
-     </script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
+    <!-- layerDate plugin javascript -->
+    <script src="<?php echo base_url().'style/admin/js/plugins/layer/laydate/laydate.js'?>"></script>
     <script>
-        $(document).ready(function () {
+        //外部js调用
+        laydate({
+            elem: '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
