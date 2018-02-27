@@ -94,7 +94,7 @@ class Api extends CI_Controller {
 		 */
 		$area_type = $_POST['area_type'];//获取类型
 		if(	$area_type == 4){
-			$data = $this->api->hotSongs();
+			$data = $this->api->hotSongs(30);
 		}else{
 			$data = $this->api->hotAreaSongs($area_type);
 		}	
@@ -280,30 +280,34 @@ class Api extends CI_Controller {
 		//p($W);
 		$recommend = array();
 		$username = $_POST['name'];
-		$rank = $this->recommend($train,$username,$W,5);   //推荐歌曲
-		// for($i=0;$i<count($rank);$i++){
-		// 	array_push($recommend,$rank[$i])
-		// }
-		//p($rank);
-
-		//将推荐的歌曲转成数组
-		foreach($rank as $key=>$val){
-			array_push($recommend,$key);
-		}
-		//通过song_mid找出对应数据
-		foreach($recommend as $value){
-			$song = $this->api->getListSong($value);
-			if($song == null){
-				continue;
-			}else{
-				$recommentSongList[] = $this->api->getListSong($value);//查询
+		$isLogin = $_POST['isLogin'];//是否登陆
+		if($isLogin == "true"){
+			$rank = $this->recommend($train,$username,$W,5);   //推荐歌曲
+			//将推荐的歌曲转成数组
+			foreach($rank as $key=>$val){
+				array_push($recommend,$key);
 			}
+			//通过song_mid找出对应数据
+			foreach($recommend as $value){
+				$song = $this->api->getListSong($value);
+				if($song == null){
+					continue;
+				}else{
+					$recommentSongList[] = $this->api->getListSong($value);//查询
+				}
+			}
+			$json_songList = json_encode($recommentSongList);
+			p($json_songList);
+		}else{
+			$num = 5;
+			$songList = $this->api->hotSongs($num);
+			$json_type = json_encode($songList);
+			p($json_type);
 		}
-		$json_type = json_encode($recommentSongList);
-		p($json_type);
-	//	p($recommentSongList);
-	}
+		
 
+	}
+    
 	//计算相似度  
 	function itemSimilarity($train){  
 		$user_item=array(); //存放歌曲列表  

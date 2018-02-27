@@ -56,8 +56,8 @@ class Api_model extends CI_Model{
 	/**
 	 * 热门  热度 (按收听量排行)
 	 */
-	public function hotSongs(){
-		$this->db->limit(30);
+	public function hotSongs($num){
+		$this->db->limit($num);
 		$singers = $this->db->select('song_listencount,song_id,song_mid,song_name,song_duration,singers.singer_name,singer_area,songs.album_mid,albums.album_name')
 		->from('songs')
 		->join('singers', 'songs.singer_mid=singers.singer_mid')
