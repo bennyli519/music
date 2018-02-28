@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>创建歌单</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link href="<?php echo base_url().'style/admin/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <link href="<?php echo base_url().'style/admin/font-awesome/css/font-awesome.css' ?>" rel="stylesheet">
+    <link href="<?php echo base_url().'style/admin/css/animate.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url().'style/admin/css/style.css'?>" rel="stylesheet">
+    <style>
+        body {
+            background: transparent;
+        }
+        
+        textarea {
+            overflow-x: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>编辑歌单</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" action="<?php echo site_url('admin/songList/')?>">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌单名称:</label>
+
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="list_name" value="<?php echo $list[0]['list_name']?>">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌单类别:</label>
+
+                                <div class="col-sm-5">
+                                    <label class="radio-inline">
+                                        <input type="radio" value="1" id="optionsRadios1" name="list_type" <?php echo set_radio('list_type', '1', TRUE) ?>/>精选
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" value="2" id="optionsRadios2" name="list_type" <?php echo set_radio('list_type', '2') ?>/>热门
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" value="3" id="optionsRadios3" name="list_type" <?php echo set_radio('list_type', '3') ?>/>最新
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">作者:</label>
+
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="list_author" value="<?php echo $list[0]['list_author']?>">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌单列表:</label>
+                                <div class="col-sm-5">
+                                    <table>
+                                        <tbody>
+                                            <?php foreach($list[0]['list_songs'] as $v): ?>
+                                            <tr>
+                                                <td><?php echo $v['song_name'] ?></td>
+                                                <td><a href="#" class="btn btn-sm btn-primary">删除</a></td>
+                                            </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">歌单介绍:</label>
+                                <div class="col-sm-5">
+                                    <textarea class="form-control" rows="5" name="list_intro" value=""><?php echo $list[0]['list_intro']?></textarea>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">修改</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Mainly scripts -->
+    <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
+    <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
+    <!-- layerDate plugin javascript -->
+
+
+    <script>
+        $(document).ready(function() {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

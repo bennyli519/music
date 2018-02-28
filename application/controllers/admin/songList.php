@@ -3,8 +3,8 @@
 /*
  * @Author: jerryli519 
  * @Date: 2017-02-05 19:06:08 
- * @Last Modified by: jerryli519
- * @Last Modified time: 2017-02-05 19:06:08 
+ * @Last Modified by: jerryLi
+ * @Last Modified time: 2018-03-01 03:01:02
  */
 
 class SongList extends CI_Controller {
@@ -14,6 +14,7 @@ class SongList extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->helper('form');
+		$this->load->model('api_model','api');
 		$this->load->model('songList_model','list');
     }
 
@@ -54,16 +55,27 @@ class SongList extends CI_Controller {
 		success('admin/songlist/show_all','添加成功');
     }
 	/**
-	 * 修改动作
+	 * 修改视图
 	 */
-	public function edit_type(){
-		$tid = $_GET['id'];//ajax 获取当前id
-		$data = array(
-			'type_name' => $_GET['type']
-		);
-		$this->type->edit($tid,$data);
+	public function edit_list(){
+		$id = $this->uri->segment(4);//歌单id
+		$data['list'] = $this->list->checkList($id);
+		$a= $data['list'][0]['list_songs'];
+		$arr = explode("/",$a);		//切割mid
+		foreach($arr as $key => $item){
+			$songList[] = $this->api->getListSong($item);//查询
+		}	
+		$data['list'][0]['list_songs'] = $songList;
+		$this->load->view("music-list/music-list-edit.html",$data);
+	}	
+	/**
+	 * 修改动作
+	 *
+	 * @return void
+	 */
+	public function update_list(){
+
 	}
-	
 	/**
 	 * 删除动作
 	 */

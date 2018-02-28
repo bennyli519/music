@@ -87,7 +87,7 @@
                                             <td><?php echo $v['list_author']?></td>
                                             <td><?php echo $v['list_publish']?></td>
                                             <td>
-                                                <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a> <a href="#" id="edit" class="btn btn-primary mgr15">查看歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a>
+                                                <a href="<?php echo site_url('admin/songList/edit_list/'. $v['list_id']) ?>" id="edit" class="btn btn-primary mgr15">编辑</a> <a href="#" id="edit" class="btn btn-primary mgr15">查看歌单</a><a href="#" id="remove" class="btn btn-danger">删除</a>
                                             </td>
                                         </tr> 
                                         <?php endforeach ?>
