@@ -106,10 +106,10 @@ class Broadcast extends CI_Controller {
 	/**
 	 * 删除动作
 	 */
-	public function del_type(){
-		$tid = $this->uri->segment(4);
-		$this->type->del($tid);
-		success('admin/type/show_all','删除成功');
+	public function del_broadcast(){
+		$id = $this->uri->segment(4);
+		$this->broad->del($id);
+		success('admin/broadcast/show_all','删除成功');
 	}
 	
 }

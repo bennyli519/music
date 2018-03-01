@@ -36,7 +36,7 @@
                         <h5>编辑歌单</h5>
                     </div>
                     <div class="ibox-content">
-                        <form method="post" class="form-horizontal" action="<?php echo site_url('admin/songList/')?>">
+                        <form method="post" class="form-horizontal" action="<?php echo site_url('admin/songList/update_list')?>">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">歌单名称:</label>
 
@@ -75,10 +75,15 @@
                                 <div class="col-sm-5">
                                     <table>
                                         <tbody>
-                                            <?php foreach($list[0]['list_songs'] as $v): ?>
+                                            <input type="hidden" name="list" value="<?php echo sizeof($list[0]['list_songs']) ?>">
+                                            <?php foreach($list[0]['list_songs'] as $key => $v): ?>
                                             <tr>
-                                                <td><?php echo $v['song_name'] ?></td>
-                                                <td><a href="#" class="btn btn-sm btn-primary">删除</a></td>
+                                                <td>
+                                                    <?php echo $v['song_name'] ?>
+                                                </td>
+                                                <td><input type="hidden" name="<?php echo 'mid'.$key ?>" value="<?php echo $v['song_mid'] ?>"></td>
+                                                <td><a id="remove" class="btn btn-sm btn-primary">删除</a>
+                                                </td>
                                             </tr>
                                             <?php endforeach ?>
                                         </tbody>

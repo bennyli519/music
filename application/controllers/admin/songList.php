@@ -74,7 +74,15 @@ class SongList extends CI_Controller {
 	 * @return void
 	 */
 	public function update_list(){
-
+		$songList = array();
+		$listSize = $_POST['list'];//歌单歌曲条数
+		echo 'aaa'.$listSize;
+		for($i=0;$i<sizeof($listSize);$i++){
+			$id = 'mid'.$i;
+			echo 'bbb'.$id;
+			//echo $_REQUEST[$id];
+		}
+		//p($songList);
 	}
 	/**
 	 * 删除动作

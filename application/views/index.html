@@ -28,7 +28,7 @@
         #content_wrapper {
             float: left;
             width: 100%;
-            height: 900px;
+            height: 880px;
         }
         
         iframe {
@@ -116,7 +116,7 @@
                             </li>
                         </ul>
                     </li>
-             
+
                     <li>
                         <a href="#"><i class="fa fa-share-square-o"></i> <span class="nav-label">电台管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -126,7 +126,7 @@
                             </li>
                         </ul>
                     </li>
-   
+
 
                     <li>
                         <a href="index.html#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
@@ -135,7 +135,7 @@
                             </li>
                             <li><a href="<?php echo site_url('admin/admin/reset')?>">修改后台登陆密码</a>
                             </li>
-                            <li><a href="contacts.html">查看前台用户</a>
+                            <li><a href="<?php echo site_url('admin/admin/checkUser')?>">查看前台用户</a>
                             </li>
                         </ul>
                     </li>
@@ -181,10 +181,10 @@
                 </nav>
             </div>
             <div id="content_wrapper">
-                <iframe frameboder="0" border="0" scrolling="yes" name="iframe" src="<?php echo site_url() . 'admin/admin/welcome' ?>"></iframe>
+                <iframe frameboder="0" border="0" scrolling="auto" name="iframe" src="<?php echo site_url() . 'admin/admin/welcome' ?>"></iframe>
             </div>
 
-            
+
         </div>
     </div>
 

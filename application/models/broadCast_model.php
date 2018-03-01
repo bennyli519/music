@@ -33,7 +33,11 @@ class BroadCast_model extends CI_Model{
 		public function add($data){
 			$this->db->insert('broadcast',$data);
 		}
-	
+		
+		public function del($id){
+			$data = $this->db->delete('broadcast',array('broadcast_id'=>$id));
+			return $data;
+		}
 		
 		/**
 		 * 收入歌曲到电台

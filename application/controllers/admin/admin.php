@@ -46,7 +46,8 @@ class Admin extends CI_Controller {
         $data = array(
             'user_name' => $username,
             'user_pwd'  => md5($newPwd),
-            'user_type' => $usertype
+            'user_type' => $usertype,
+            'user_avtar'=>'http://thirdqq.qlogo.cn/g?b=sdk&k=7mqicicib2s1aJgvnEOpMQibiaQ&s=100&t=519'
         );
 
         $this->admin->add($data);
@@ -82,5 +83,20 @@ class Admin extends CI_Controller {
         $this->admin->reset($uid,$data);
         success('admin/admin/reset', '修改成功');
 
+    }
+    /**
+     * 查询前台用户
+     */
+    public function checkUser(){
+        $data['user'] = $this->admin->checkUser();
+        $this->load->view("music_user_check.html",$data);
+    }
+     /**
+     *删除前台用户
+     */
+    public function delUser(){
+        $id = $this->uri->segment(4);
+		$this->admin->del($id);
+		success('admin/admin/checkUser','删除成功');
     }
 }

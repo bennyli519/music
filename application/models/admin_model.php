@@ -17,6 +17,13 @@ class Admin_model extends CI_Model{
 		return $data;
 	}
 	/**
+	 * 查询前台用户
+	 */
+	public function checkUser(){
+		$data = $this->db->get_where('users', array('user_type'=>'1'))->result_array();
+		return $data;
+	}
+	/**
 	 * 添加管理员
 	 */
 
@@ -30,6 +37,16 @@ class Admin_model extends CI_Model{
 	public function reset($uid, $data){
 		$this->db->update('users', $data, array('user_id'=>$uid));
 	}
-
+	/**
+	 * 删除前台用户
+	 *
+	 * @param [type] $id
+	 * @return void
+	 */
+	public function del($id){
+		$data = $this->db->delete('users',array('user_id'=>$id));
+		return $data;
+	}
+	
 	
 }

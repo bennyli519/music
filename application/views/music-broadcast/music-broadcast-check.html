@@ -4,7 +4,8 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
 
     <title>查看电台</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
@@ -14,47 +15,52 @@
     <link href="<?php echo base_url().'style/admin/font-awesome/css/font-awesome.css' ?>" rel="stylesheet">
     <link href="<?php echo base_url().'style/admin/css/animate.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'style/admin/css/style.css'?>" rel="stylesheet">
-	<style>
-        body{
-            background:transparent;
+    <style>
+        body {
+            background: transparent;
         }
-        textarea{
-        	overflow-x:hidden;
+        
+        textarea {
+            overflow-x: hidden;
         }
     </style>
 
 </head>
 
 <body>
-      
-            <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>查看电台</h5>
-                            </div>
-                            <div class="ibox-content">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                      <thead>
-                                        <tr>
-                                          <th>#</th>
-                                          <th>电台名</th>
-                                          <th>电台类别</th>
-                                          <th>作者</th>
-                                          <th>电台介绍</th>
-                                          <th>发布时间</th>
-                                          <th>操作</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                      	<?php foreach($broadcast as $v): ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $v['broadcast_id'] ?></th>                               
-                                            <td><?php echo $v['broadcast_name'] ?></td>
-	                                         <td>
-                                                 <?php 
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>查看电台</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>电台名</th>
+                                        <th>电台类别</th>
+                                        <th>作者</th>
+                                        <th>电台介绍</th>
+                                        <th>发布时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($broadcast as $v): ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <?php echo $v['broadcast_id'] ?>
+                                        </th>
+                                        <td>
+                                            <?php echo $v['broadcast_name'] ?>
+                                        </td>
+                                        <td>
+                                            <?php 
                                                     if($v['broadcast_type'] == 1){
                                                         echo '个性';
                                                     }else if($v['broadcast_type'] == 2){
@@ -67,23 +73,30 @@
                                                         echo '随心听';
                                                     }
 	                                    	    ?>
-                                            </td>
-                                            <td><?php echo $v['broadcast_author'] ?></td>
-                                            <td><?php echo $v['broadcast_intro'] ?></td>
-                                            <td><?php echo $v['broadcast_publish'] ?></td>
-                                            <td>
-                                                <a href="<?php echo site_url('admin/broadcast/update_broadcast/'.$v['broadcast_id'])?>" id="edit" class="btn btn-primary mgr15">一键收录歌曲</a><a href="#" id="remove" class="btn btn-danger">删除</a>
-                                            </td>
-                                        </tr>
-                        				<?php endforeach ?>
-                                      </tbody>
-                                    </table>
-                                  </div>
-                            </div>
+                                        </td>
+                                        <td>
+                                            <?php echo $v['broadcast_author'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $v['broadcast_intro'] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $v['broadcast_publish'] ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo site_url('admin/broadcast/update_broadcast/'.$v['broadcast_id'])?>" id="edit" class="btn btn-primary mgr15">一键收录歌曲</a>
+                                            <a href="<?php echo site_url('admin/broadcast/del_broadcast/'.$v['broadcast_id'])?>" id="remove" class="btn btn-danger">删除</a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
 
 
@@ -96,7 +109,7 @@
     <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',

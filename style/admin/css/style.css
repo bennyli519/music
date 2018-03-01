@@ -1,5 +1,7 @@
 /*@import url("http://fonts.useso.com/css?family=Open+Sans:300,400,600,700&amp;lang=en");
 */
+
+
 /*
  *
  *   H+ - Admin Theme
@@ -62,9 +64,11 @@ h5 {
 .mgb20 {
     margin-bottom: 20px;
 }
-.mgt10{
-	margin-top: 10px;
+
+.mgt10 {
+    margin-top: 10px;
 }
+
 .nav>li>a {
     color: #a7b1c2;
     font-weight: 600;
@@ -118,7 +122,8 @@ h5 {
 }
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 body.body-small .navbar-top-links li:last-child {
@@ -3674,7 +3679,7 @@ video {
 }
 
 .wrapper-content {
-    padding: 20px 10px 40px;
+    padding: 20px 10px 20px;
 }
 
 #page-wrapper {
@@ -3687,7 +3692,7 @@ video {
     #page-wrapper {
         position: inherit;
         margin: 0 0 0 240px;
-        min-height: 1000px;
+        min-height: 948px;
     }
 }
 
@@ -7243,8 +7248,6 @@ body.rtls.top-navigation .footer.fixed {
     background: #199d82;
 }
 
-
-
 .ultra-skin:hover {
     background: #1a2d40;
 }
@@ -7409,7 +7412,7 @@ body.skin-2 {
 
 .skin-2 .nav-header {
     background: #23c6c8;
-   /* background: url('patterns/header-profile-skin-2.png');*/
+    /* background: url('patterns/header-profile-skin-2.png');*/
 }
 
 .skin-2.mini-navbar .nav-second-level {

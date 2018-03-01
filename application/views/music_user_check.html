@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>查看前台用户</title>
+    <meta name="keywords" content="imusic后台管理系统，音乐推荐系统">
+    <meta name="description" content="imusic后台管理系统">
+
+    <link href="<?php echo base_url().'style/admin/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <link href="<?php echo base_url().'style/admin/font-awesome/css/font-awesome.css' ?>" rel="stylesheet">
+    <link href="<?php echo base_url().'style/admin/css/animate.css'?>" rel="stylesheet">
+    <link href="<?php echo base_url().'style/admin/css/style.css'?>" rel="stylesheet">
+    <style>
+        body {
+            background: transparent;
+        }
+        
+        .mgl10 {
+            margin-left: 10px;
+        }
+        
+        #edit {
+            border-color: transparent;
+        }
+        
+        textarea.active {
+            border: 1px solid green !important;
+        }
+        
+        textarea:hover {
+            cursor: pointer;
+            border: 1px solid green !important;
+        }
+        
+        .page strong {
+            margin-left: 2px;
+            border: 1px solid #ccc;
+            padding: 3px;
+            font-weight: 400;
+        }
+        
+        .page a {
+            margin-left: 2px;
+            border: 1px solid #ccc;
+            padding: 3px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>查看前台用户</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>用户名</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($user as $v): ?>
+                                    <tr>
+                                        <th class="cid" scope="row">
+                                            <?php echo $v['user_id']?>
+                                        </th>
+                                        <td>
+                                            <img src="<?php echo $v['user_avtar']?>" class="img-circle" width="50" height="50" />
+                                            <strong class="mgl10"><?php echo $v['user_name'] ?></strong>
+                                        </td>
+
+                                        <td>
+                                            <a href="<?php echo site_url('admin/admin/delUser/' . $v['user_id']) ?>" id="remove" class="btn btn-danger">删除</a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+
+                                <!--<div class="page text-center">								
+								</div>-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
+    <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
+
+
+</body>
+
+</html>

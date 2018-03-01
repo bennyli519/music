@@ -4,7 +4,8 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
 
     <title>添加管理员用户</title>
     <meta name="keywords" content="imusic后台管理系统，音乐推荐系统">
@@ -16,7 +17,7 @@
     <link href="<?php echo base_url().'style/admin/css/animate.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'style/admin/css/style.css'?>" rel="stylesheet">
     <style>
-        body{
+        body {
             background: transparent;
         }
     </style>
@@ -24,96 +25,71 @@
 
 <body>
 
-        <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>添加管理员用户</h5>
-                        </div>
-                        <div class="ibox-content">
-                                <form method="post" class="form-horizontal" action="<?php echo site_url('admin/admin/add_user')?>">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">用户名:</label>
-    
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="username">
-                                            </div>
-                                        </div>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">用户类型:</label>
-    
-                                            <div class="col-sm-2">
-                                                <select class="form-control m-b" name="userType">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>添加管理员用户</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" action="<?php echo site_url('admin/admin/add_user')?>">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名:</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="username">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户类型:</label>
+
+                                <div class="col-sm-2">
+                                    <select class="form-control m-b" name="userType">
                                                     <option value="0"<?php echo set_select('userType', '0', TRUE) ?>>超级管理员</option>
                                                     <option value="1"<?php echo set_select('userType', '1') ?>>前台用户</option>                                
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">新密码:</label>
-    
-                                            <div class="col-sm-4">
-                                                <input type="password" class="form-control" name="newPwd">
-                                            </div>
-                                        </div>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">确认密码:</label>
-    
-                                            <div class="col-sm-4">
-                                                <input type="password" class="form-control" name="confirmPwd">
-                                            </div>
-                                        </div>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group">
-                                            <div class="col-sm-4 col-sm-offset-2">
-                                                <button class="btn btn-primary" type="submit">添加</button>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新密码:</label>
 
-                                </form>
-                        </div>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" name="newPwd">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">确认密码:</label>
+
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" name="confirmPwd">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">添加</button>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
 
     <!-- Mainly scripts -->
-    <script src="../../js/jquery-2.1.1.min.js"></script>
-    <script src="../../js/bootstrap.min.js?v=3.4.0"></script>
-    <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
+    <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
 
-    <!-- Custom and plugin javascript -->
-    <script src="../../js/hplus.js?v=2.2.0"></script>
-    <script src="../../js/plugins/pace/pace.min.js"></script>
 
-    <!-- iCheck -->
-    <script src="../../js/plugins/iCheck/icheck.min.js"></script>
-     <!-- layerDate plugin javascript -->
-     <script src="../../js/plugins/layer/laydate/laydate.js"></script>
-     <script>
-         //外部js调用
-         laydate({
-             elem: '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
-             event: 'focus' //响应事件。如果没有传入event，则按照默认的click
-         });
- 
-     </script>
-    <script>
-        $(document).ready(function () {
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-        });
-    </script>
 
 
 </body>
