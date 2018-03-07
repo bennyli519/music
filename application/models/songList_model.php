@@ -21,7 +21,7 @@ class SongList_model extends CI_Model{
 	 */
 	public function checkList($list_id){
 		$this->db->where('list_id',$list_id);
-		$query = $this->db->select('list_name,list_type,list_intro,list_author,list_songs')
+		$query = $this->db->select()
 		->from('lists')->get()->result_array();
 		return $query;
 	}
@@ -44,7 +44,7 @@ class SongList_model extends CI_Model{
 	 * 删除
 	 */
 	public function del($tid){
-		$data = $this->db->delete('type',array('type_id'=>$tid));
+		$data = $this->db->delete('lists',array('list_id'=>$tid));
 		return $data;
 	}
 	

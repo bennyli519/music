@@ -74,23 +74,27 @@ class SongList extends CI_Controller {
 	 * @return void
 	 */
 	public function update_list(){
-		$songList = array();
-		$listSize = $_POST['list'];//歌单歌曲条数
-		echo 'aaa'.$listSize;
-		for($i=0;$i<sizeof($listSize);$i++){
-			$id = 'mid'.$i;
-			echo 'bbb'.$id;
-			//echo $_REQUEST[$id];
-		}
-		//p($songList);
+		$list = $_GET['songList'];//歌单编辑后的数据
+		$list_id = $list['id'];
+		$dt = new DateTime();
+		$date = $dt->format('Y-m-d H:i:s');
+		$data = array(
+			'list_name' => $list['name'],
+			'list_type' => $list['type'],
+			'list_songs' => $list['songList'],
+			'list_author' => $list['author'],
+			'list_intro' => $list['intro'],
+			'list_publish' => $date
+		);
+		$this->list->edit($list_id,$data);
 	}
 	/**
 	 * 删除动作
 	 */
-	public function del_type(){
+	public function del_list(){
 		$tid = $this->uri->segment(4);
-		$this->type->del($tid);
-		success('admin/type/show_all','删除成功');
+		$this->list->del($tid);
+		success('admin/songlist/show_all','删除成功');
 	}
 	
 }

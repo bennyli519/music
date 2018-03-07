@@ -4,7 +4,8 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
 
     <title>后台管理系统</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
@@ -15,18 +16,21 @@
     <link href="<?php echo base_url().'style/admin/css/animate.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'style/admin/css/style.css'?>" rel="stylesheet">
     <style>
-        body{
-            background:transparent;
+        body {
+            background: transparent;
         }
-        #edit{
-        	border-color: transparent;
+        
+        #edit {
+            border-color: transparent;
         }
-        input.active{
-        	border:1px solid green !important;
+        
+        input.active {
+            border: 1px solid green !important;
         }
-        input:hover{
-        	cursor: pointer;
-        	border:1px solid green !important;
+        
+        input:hover {
+            cursor: pointer;
+            border: 1px solid green !important;
         }
     </style>
 
@@ -44,73 +48,78 @@
                     <div class="ibox-content">
                         <div class="table-responsive">
                             <table class="table">
-                              <thead>
-                                <tr>
-                                  <th>#</th>
-                                  <th>类型名称</th>
-                                  <th>操作</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                              	<?php foreach($type as $v): ?>
-                                <tr>
-                                    <th class="tid" scope="row"><?php echo $v['type_id'] ?></th>
-                                    <!--<td><?php echo $v['type_name'] ?></td>-->
-                                    <td><input type="text" class="form-control" id="edit"  value='<?php echo $v['type_name']?>'/></td>
-                                    <td>
-                                      <!--  <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a>-->
-                                        <a href="<?php echo site_url('admin/type/del_type/' . $v['type_id']) ?>" id="remove" class="btn btn-danger mgr15">删除</a>
-                                     
-                                    </td>
-                                </tr>
-                         		<?php endforeach ?>
-                              </tbody>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>类型名称</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($type as $v): ?>
+                                    <tr>
+                                        <th class="tid" scope="row">
+                                            <?php echo $v['type_id'] ?>
+                                        </th>
+                                        <!--<td><?php echo $v['type_name'] ?></td>-->
+                                        <td><input type="text" class="form-control" id="edit" value='<?php echo $v[' type_name ']?>'/></td>
+                                        <td>
+                                            <!--  <a href="#" id="edit" class="btn btn-primary mgr15">编辑</a>-->
+                                            <a href="<?php echo site_url('admin/type/del_type/' . $v['type_id']) ?>" id="remove" class="btn btn-danger mgr15">删除</a>
+
+                                        </td>
+                                    </tr>
+                                    <?php endforeach ?>
+                                </tbody>
                             </table>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    
-    </div>
-           
-   <!-- Mainly scripts -->
-   <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
-   <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
 
- 
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="<?php echo base_url().'style/admin/js/jquery-2.1.1.min.js'?>"></script>
+    <script src="<?php echo base_url().'style/admin/js/bootstrap.min.js'?>"></script>
+
+
     <!-- iCheck -->
     <script src="<?php echo base_url().'style/admin/js/plugins/iCheck/icheck.min.js'?>"></script>
     <script>
-        $(document).ready(function () {
-        	console.log("aa");
-        	console.log("<?php echo site_url('admin/type/edit_type')?>");
+        $(document).ready(function() {
+            console.log("aa");
+            console.log("<?php echo site_url('admin/type/edit_type')?>");
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
-			$("input").focus(function(){
-				$(this).addClass('active');
-			})
-			$("input").blur(function(){
-	
-				$(this).removeClass('active');
-			})
-            $("input").change(function(){
-           		var type_name = $(this).val();
-				var tid = $(this).parent().parent().find('.cid').html();
-				$.get("<?php echo site_url('admin/type/edit_type')?>",{id : tid,type:type_name});
+            $("input").focus(function() {
+                $(this).addClass('active');
+            })
+            $("input").blur(function() {
+
+                $(this).removeClass('active');
+            })
+            $("input").change(function() {
+                var type_name = $(this).val();
+                var tid = $(this).parent().parent().find('.cid').html();
+                $.get("<?php echo site_url('admin/type/edit_type')?>", {
+                    id: tid,
+                    type: type_name
+                });
 
             })
-            $("tbody tr td #remove").one("click",function(){
-                var msg = "您真的确定要删除吗？"; 
-                if (confirm(msg)==true){ 
+            $("tbody tr td #remove").one("click", function() {
+                var msg = "您真的确定要删除吗？";
+                if (confirm(msg) == true) {
                     $(this).parent().parent().remove();
-                }else{ 
-                    return false; 
-                } 
+                } else {
+                    return false;
+                }
                 var currentText = $(this).parent().prev().text();
-               
+
             })
         });
     </script>

@@ -23,6 +23,10 @@
         textarea {
             overflow-x: hidden;
         }
+        
+        tbody tr td:first-child {
+            display: none;
+        }
     </style>
 
 </head>
@@ -36,12 +40,13 @@
                         <h5>编辑歌单</h5>
                     </div>
                     <div class="ibox-content">
-                        <form method="post" class="form-horizontal" action="<?php echo site_url('admin/songList/update_list')?>">
+                        <form method="post" class="form-horizontal" action="#">
+                            <input type="hidden" id="list_id" value="<?php echo $list[0]['list_id']?>"></input>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">歌单名称:</label>
 
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="list_name" value="<?php echo $list[0]['list_name']?>">
+                                    <input type="text" class="form-control" id="list_name" value="<?php echo $list[0]['list_name']?>">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -66,7 +71,7 @@
                                 <label class="col-sm-2 control-label">作者:</label>
 
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="list_author" value="<?php echo $list[0]['list_author']?>">
+                                    <input type="text" class="form-control" id="list_author" value="<?php echo $list[0]['list_author']?>">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -78,6 +83,9 @@
                                             <input type="hidden" name="list" value="<?php echo sizeof($list[0]['list_songs']) ?>">
                                             <?php foreach($list[0]['list_songs'] as $key => $v): ?>
                                             <tr>
+                                                <td>
+                                                    <?php echo $v['song_mid'] ?>
+                                                </td>
                                                 <td>
                                                     <?php echo $v['song_name'] ?>
                                                 </td>
@@ -94,13 +102,13 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">歌单介绍:</label>
                                 <div class="col-sm-5">
-                                    <textarea class="form-control" rows="5" name="list_intro" value=""><?php echo $list[0]['list_intro']?></textarea>
+                                    <textarea class="form-control" rows="5" id="list_intro" value=""><?php echo $list[0]['list_intro']?></textarea>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-primary" type="submit">修改</button>
+                                    <button class="btn btn-primary submit">修改</button>
                                 </div>
                             </div>
 
@@ -110,8 +118,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 
@@ -129,6 +135,41 @@
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
+            $('.submit').click(function() {
+                var id =$("#list_id").val();
+                var name = $('#list_name').val();
+                var type = $('input:radio[name="list_type"]:checked').val();
+                var author = $('#list_author').val();
+                var intro = $('#list_intro').val();
+                var songList = '';
+
+                $('tbody tr').find('td:first-child').each(function() {
+                    songList += "/" + $(this).html().trim();
+                });
+                var list = {
+                    'id': id,
+                    'name': name,
+                    'type': type,
+                    'author': author,
+                    'songList': songList.substr(1),
+                    'intro': intro
+                };
+                $.get("<?php echo site_url('admin/songList/update_list')?>", {
+                    songList: list
+                },function(data){
+                    alert("修改成功");
+                });
+            })
+            $("tbody tr td #remove").one("click", function() {
+                var msg = "您真的确定要删除吗？";
+                if (confirm(msg) == true) {
+                    $(this).parent().parent().remove();
+                } else {
+                    return false;
+                }
+                var currentText = $(this).parent().prev().text();
+
+            })
         });
     </script>
 
