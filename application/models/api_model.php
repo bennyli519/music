@@ -15,6 +15,12 @@ class Api_model extends CI_Model{
 		$data = $this->db->get_where('users', array('user_name'=>$username,'user_type'=>'1'))->result_array();
 		return $data;
 	}
+	public function checkName($id){
+		$data = $this->db->select('user_name,user_avtar')
+		->get_where('users', array('user_id'=>$id))
+		->row();
+		return $data;
+	}
 	/**
 	 * 查询歌手信息
 	 */
@@ -237,15 +243,22 @@ class Api_model extends CI_Model{
 		$this->db->insert('comment',$data);
 	}
 
+	/**
+	 * 插入回复内容
+	 */
+
+	public function addReply($data){
+		$this->db->insert('reply',$data);
+	}
 	/*
 	 * 查询评论
 	 */
 	public function check_comment($mid){
 		$this->db->join('reply', 'comment.comment_id = reply.comment_id', 'left');
 		$this->db->where('song_mid',$mid);
-		$data = $this->db->select('comment_id,comment_content,comment_time,user_name,user_avtar,reply_content')
+		$data = $this->db->select('user_id,comment.comment_id,comment_content,comment_time,user_name,user_avtar,reply.from_uid,reply_content,reply_time')
 		->from('comment')
-		->join('users', 'from_uid=user_id')
+		->join('users', 'comment.from_uid=user_id')
 		->order_by('comment_id', 'asc')
 		->get()->result_array();
 		return $data;

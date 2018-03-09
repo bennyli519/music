@@ -250,9 +250,42 @@ class Api extends CI_Controller {
 		);
 		$this->api->addComment($data);
 		$content = $this->api->check_comment($mid);
+		foreach($content as $key => $value){
+			$user_id = $content[$key]['from_uid'];
+			$content[$key]['from_uid'] = $this->api->checkName($user_id);
+		}
 		$json_type = json_encode($content);
 		p($json_type);
 		//p("发表成功");
+	}
+	/**
+	 * 发表回复
+	 *
+	 * @return void
+	 */
+	public function addReply(){
+		$mid = $_POST['mid'];//歌曲mid
+		$from_id = $_POST['from_id'];
+		$to_id = $_POST['to_id'];
+		$cid = $_POST['cid'];
+		$comment = $_POST['comment'];
+		$dt = new DateTime();
+		$date = $dt->format('Y-m-d H:i:s');
+		$data = array(
+			'comment_id' => $cid,
+			'reply_content' => $comment,
+			'from_uid' => $from_id,
+			'to_uid' => $to_id,
+			'reply_time' =>	$date
+		);
+		$this->api->addReply($data);
+		$content = $this->api->check_comment($mid);
+		foreach($content as $key => $value){
+			$user_id = $content[$key]['from_uid'];
+			$content[$key]['from_uid'] = $this->api->checkName($user_id);
+		}
+		$json_type = json_encode($content);
+		p($json_type);
 	}
 	/**
 	 * 查看评论
@@ -260,9 +293,12 @@ class Api extends CI_Controller {
 	 * @return void
 	 */
 	public function checkComment(){
-		//$mid = $_POST['mid'];//歌曲mid
-		$mid = "003tefnw2xS3QA";
+		$mid = $_POST['mid'];//歌曲mid
 		$content = $this->api->check_comment($mid);
+		foreach($content as $key => $value){
+			$user_id = $content[$key]['from_uid'];
+			$content[$key]['from_uid'] = $this->api->checkName($user_id);
+		}
 		$json_type = json_encode($content);
 		p($json_type);
 		//p("发表成功");
