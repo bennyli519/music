@@ -260,8 +260,8 @@ class Api extends CI_Controller {
 	 * @return void
 	 */
 	public function checkComment(){
-		$mid = $_POST['mid'];//歌曲mid
-		//$mid = "003tefnw2xS3QA";
+		//$mid = $_POST['mid'];//歌曲mid
+		$mid = "003tefnw2xS3QA";
 		$content = $this->api->check_comment($mid);
 		$json_type = json_encode($content);
 		p($json_type);
@@ -371,5 +371,22 @@ class Api extends CI_Controller {
         }  
 		arsort($rank);
         return $rank;  
-    }  
+	}  
+	
+	public function getCollect(){
+		$uid = $_POST['uid'];
+		$collect_list = $this->api->get_only_collect($uid);
+		$json_type = json_encode($collect_list);
+		p($json_type);
+	}
+
+	public function insertSong(){
+		$mid = $_POST['song'];
+		$uid = $_POST['uid'];
+		$data = array(
+			'user_id' => $uid ,
+			'song_mid' => $mid
+		);
+		$this->api->addCollectSong($data);
+	}
 }  

@@ -241,8 +241,9 @@ class Api_model extends CI_Model{
 	 * 查询评论
 	 */
 	public function check_comment($mid){
+		$this->db->join('reply', 'comment.comment_id = reply.comment_id', 'left');
 		$this->db->where('song_mid',$mid);
-		$data = $this->db->select('comment_id,comment_content,comment_time,user_name,user_avtar')
+		$data = $this->db->select('comment_id,comment_content,comment_time,user_name,user_avtar,reply_content')
 		->from('comment')
 		->join('users', 'from_uid=user_id')
 		->order_by('comment_id', 'asc')
@@ -263,4 +264,26 @@ class Api_model extends CI_Model{
 		->get()->result_array();
 		return $data;
 	}
+
+	/**
+	 * 获取指定用户收藏歌曲列表
+	 *
+	 * @return void
+	 */
+	public function get_only_collect($uid){
+		$this->db->where('user_id',$uid);
+		$data = $this->db->select("song_publish,song_id,collect.song_mid,song_name,song_duration,singers.singer_name,album_mid")
+		->from('collect')
+		->join('songs','songs.song_mid=collect.song_mid' )
+		->join('singers', 'songs.singer_mid=singers.singer_mid')
+		// ->join('albums','songs.album_mid=albums.album_mid')
+		->order_by('collect_id', 'asc')
+		->get()->result_array();
+		return $data;
+	}
+
+	public function addCollectSong($data){
+		$this->db->insert('collect',$data);
+	}
+
 }

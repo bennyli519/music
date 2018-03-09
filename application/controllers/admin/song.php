@@ -231,6 +231,10 @@ class Song extends CI_Controller {
      	}
 
 	}
+	public function getCollect(){
+		$uid = 10002;
+		$this->api->get_only_collect($uid);
+	}
 	
 }
  
