@@ -859,6 +859,12 @@ if ( ! function_exists('function_usable'))
 function p($arr){
 	print_r($arr);
 }
+
+function e($arr){
+	echo '<pre>';
+	print_r($arr);
+	echo '</pre>';
+}
 // admin/category/index
 /**
  * 成功提示函数
